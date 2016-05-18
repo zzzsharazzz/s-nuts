@@ -1,6 +1,8 @@
 
 $(document).ready(function(){
 
+	var rootPath = getContextPath();
+
 	$(function () {
 		$.scrollUp({
 	        scrollName: 'scrollUp', // Element ID
@@ -49,4 +51,14 @@ $(document).ready(function(){
 			$(".countryListItem[name^='" + $(this).attr("name") + "']").trigger("click", [true]);
 		}
 	});
+
+	// Products selection process
+	$(".productinfo").bind("click", function() {
+		window.location = "product-details.html";
+	});
+
+	// Get current address href
+	function getContextPath() {
+		return window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+	}
 });
