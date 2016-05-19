@@ -89,6 +89,11 @@ return array(
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
+            'layout/slider'           => __DIR__ . '/../view/layout/partials/slider.phtml',
+            'layout/sidebar'          => __DIR__ . '/../view/layout/partials/sidebar.phtml',
+            'layout/footer'           => __DIR__ . '/../view/layout/partials/footer.phtml',
+            'layout/recommend'        => __DIR__ . '/../view/layout/partials/recommend.phtml',
+            'layout/menu'             => __DIR__ . '/../view/layout/partials/menu.phtml'
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
