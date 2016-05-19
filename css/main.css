@@ -846,13 +846,18 @@ h2.title {
 }
 
 .product-image-wrapper{
+	width: 250px;
+	height: 280px;
 	border:1px solid #F7F7F5;
 	overflow: hidden;
 	margin-bottom:30px;
+	text-align: center;
 }
 
 .single-products {
   position: relative;
+	width: 250px;
+	height: 260px;
 }
 
 .new, .sale {
@@ -888,6 +893,8 @@ h2.title {
 
 .productinfo{
  position:relative;
+	max-width: 200px;
+	max-height: 200px;
 }
 
 .product-overlay {
