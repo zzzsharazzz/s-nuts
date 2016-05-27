@@ -52,6 +52,65 @@ return array(
                     ),
                 ),
             ),
+
+            'pages' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/pages[/:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Page',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+
+            'auth' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/auth[/:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Auth',
+                        'action'     => 'login',
+                    ),
+                ),
+            ),
+
+            'product' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/product[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Product',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+
+            'cart' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/cart[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Cart',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+
         ),
     ),
     'service_manager' => array(
@@ -75,7 +134,11 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => Controller\IndexController::class
+            'Application\Controller\Index' => Controller\IndexController::class,
+            'Application\Controller\Auth' => Controller\AuthController::class,
+            'Application\Controller\Product' => Controller\ProductController::class,
+            'Application\Controller\Page' => Controller\PageController::class,
+            'Application\Controller\Cart' => Controller\CartController::class
         ),
     ),
     'view_manager' => array(
@@ -93,7 +156,8 @@ return array(
             'layout/sidebar'          => __DIR__ . '/../view/layout/partials/sidebar.phtml',
             'layout/footer'           => __DIR__ . '/../view/layout/partials/footer.phtml',
             'layout/recommend'        => __DIR__ . '/../view/layout/partials/recommend.phtml',
-            'layout/menu'             => __DIR__ . '/../view/layout/partials/menu.phtml'
+            'layout/menu'             => __DIR__ . '/../view/layout/partials/menu.phtml',
+            'layout/header'           => __DIR__ . '/../view/layout/partials/header.phtml'
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

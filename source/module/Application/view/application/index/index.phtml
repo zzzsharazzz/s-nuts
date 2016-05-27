@@ -1,79 +1,212 @@
-<div class="features_items">
-    <!--features_items-->
-    <h2 class="title text-center">Features Items</h2>
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="<?php echo $this->basePath() ?>/images/products/Dried Chestnuts.jpg" alt="" />
-                    <h2>$56</h2>
-                    <p>Dried Chestnuts</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+<?php echo $this->partial('layout/slider') ?>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <h2>Category</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <!--category-products-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="#">Mixed Nuts</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="#">Chestnuts</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="#">Soy Nuts</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="#">Peanuts</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="#">Cacao</a></h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a href="#">Almonds</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/category-products-->
                 </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center">Features Items</h2>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => 1]) ?>">
+                                <div class="productinfo text-center cursor_hover">
+                                    <img src="images/products/Dried Chestnuts.jpg" alt="" />
+                                    <h2>$56</h2>
+                                    <p>Dried Chestnuts</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => 1]) ?>">
+                                <div class="productinfo text-center cursor_hover">
+                                    <img src="images/products/Jumbo Raw Peanuts (In Shell).jpg" alt="" />
+                                    <h2>$56</h2>
+                                    <p>Jumbo Raw Peanuts (In Shell)</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => 1]) ?>">
+                                <div class="productinfo text-center cursor_hover">
+                                    <img src="images/products/Organic Cacao Beans (Raw).jpg" alt="" />
+                                    <h2>$56</h2>
+                                    <p>Organic Cacao Beans (Raw)</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => 1]) ?>">
+                                <div class="productinfo text-center cursor_hover">
+                                    <img src="images/products/Supreme Roasted Mixed Nuts (Unsalted).jpg" alt="" />
+                                    <h2>$56</h2>
+                                    <p>Supreme Roasted Mixed Nuts (Unsalted)</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </div>
+                                <img src="images/home/new.png" class="new" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => 1]) ?>">
+                                <div class="productinfo text-center cursor_hover">
+                                    <img src="images/products/Dry Roasted Edamame (Salted).jpg" alt="" />
+                                    <h2>$56</h2>
+                                    <p>Dry Roasted Edamame (Salted)</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </div>
+                                <img src="images/home/sale.png" class="new" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--features_items-->
+
+                <div class="recommended_items">
+                    <!--recommended_items-->
+                    <h2 class="title text-center">recommended items</h2>
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => 1]) ?>">
+                                            <div class="productinfo text-center cursor_hover">
+                                                <img src="images/products/Organic Cacao Beans (Peeled).jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Organic Cacao Beans (Peeled)</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => 1]) ?>">
+                                            <div class="productinfo text-center cursor_hover">
+                                                <img src="images/products/Roasted Soy Beans (Salted, Whole).jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Roasted Soy Beans (Salted, Whole)</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => 1]) ?>">
+                                            <div class="productinfo text-center cursor_hover">
+                                                <img src="images/products/Fresh Chestnuts.jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Fresh Chestnuts</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => 1]) ?>">
+                                            <div class="productinfo text-center cursor_hover">
+                                                <img src="images/products/Mixed Nuts (In Shell).jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Mixed Nuts (In Shell)</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => 1]) ?>">
+                                            <div class="productinfo text-center cursor_hover">
+                                                <img src="images/products/Dried Chestnuts.jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Dried Chestnuts</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => 1]) ?>">
+                                            <div class="productinfo text-center cursor_hover">
+                                                <img src="images/products/Raw Redskin Peanuts.jpg" alt="" />
+                                                <h2>$56</h2>
+                                                <p>Raw Redskin Peanuts</p>
+                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!--/recommended_items-->
             </div>
         </div>
     </div>
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="<?php echo $this->basePath() ?>/images/products/Jumbo Raw Peanuts (In Shell).jpg" alt="" />
-                    <h2>$56</h2>
-                    <p>Jumbo Raw Peanuts (In Shell)</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="<?php echo $this->basePath() ?>/images/products/Organic Cacao Beans (Raw).jpg" alt="" />
-                    <h2>$56</h2>
-                    <p>Organic Cacao Beans (Raw)</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="<?php echo $this->basePath() ?>/images/products/Supreme Roasted Mixed Nuts (Unsalted).jpg" alt="" />
-                    <h2>$56</h2>
-                    <p>Supreme Roasted Mixed Nuts (Unsalted)</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-                <img src="<?php echo $this->basePath() ?>/images/home/new.png" class="new" alt="" />
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="<?php echo $this->basePath() ?>/images/products/Dry Roasted Edamame (Salted).jpg" alt="" />
-                    <h2>$56</h2>
-                    <p>Dry Roasted Edamame (Salted)</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-                <img src="<?php echo $this->basePath() ?>/images/home/sale.png" class="new" alt="" />
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <img src="<?php echo $this->basePath() ?>/images/products/Roasted Almonds (50% Less Salt).jpg" alt="" />
-                    <h2>$56</h2>
-                    <p>Roasted Almonds (50% Less Salt)</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--features_items-->
+</section>

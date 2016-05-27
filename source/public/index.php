@@ -17,5 +17,8 @@ if (php_sapi_name() === 'cli-server') {
 // Setup autoloading
 require 'init_autoloader.php';
 
+// Load const
+require realpath(__DIR__ . '/../config/Const.php');
+
 // Run the application!
 Zend\Mvc\Application::init(require 'config/application.config.php')->run();
