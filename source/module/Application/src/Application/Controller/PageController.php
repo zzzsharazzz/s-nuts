@@ -9,11 +9,16 @@
 
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Mvc\MvcEvent;
 
-class PageController extends AbstractActionController
+class PageController extends BaseController
 {
+    public function onDispatch(MvcEvent $e)
+    {
+        $this->setPageTitle('Pages');
+        parent::onDispatch($e);
+    }
     
     public function indexAction()
     {

@@ -9,11 +9,17 @@
 
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Mvc\MvcEvent;
 
-class IndexController extends AbstractActionController
+class IndexController extends BaseController
 {
+   public function onDispatch(MvcEvent $e)
+   {
+       $this->setPageTitle('Homepage');
+        parent::onDispatch($e);
+   }
+
     public function indexAction()
     {
         return new ViewModel();

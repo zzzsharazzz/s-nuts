@@ -9,11 +9,18 @@
 
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Mvc\MvcEvent;
 
-class CartController extends AbstractActionController
+class CartController extends BaseController
 {
+
+    public function onDispatch(MvcEvent $e)
+    {
+        $this->setPageTitle('Cart');
+        parent::onDispatch($e);
+    }
+
     public function indexAction()
     {
         return new ViewModel();

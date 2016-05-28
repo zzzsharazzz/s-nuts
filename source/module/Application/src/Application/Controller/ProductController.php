@@ -9,11 +9,17 @@
 
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Mvc\MvcEvent;
 
-class ProductController extends AbstractActionController
+class ProductController extends BaseController
 {
+    public function onDispatch(MvcEvent $e)
+    {
+        $this->setPageTitle('Products');
+        parent::onDispatch($e);
+    }
+
     public function indexAction()
     {
         return new ViewModel();
@@ -21,6 +27,7 @@ class ProductController extends AbstractActionController
 
     public function detailAction()
     {
+        $this->setPageTitle('Details');
         return new ViewModel();
     }
 }

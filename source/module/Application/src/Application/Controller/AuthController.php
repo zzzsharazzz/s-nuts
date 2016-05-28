@@ -9,11 +9,17 @@
 
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Mvc\MvcEvent;
 
-class AuthController extends AbstractActionController
+class AuthController extends BaseController
 {
+    public function onDispatch(MvcEvent $e)
+    {
+        $this->setPageTitle('Authenticate');
+        parent::onDispatch($e);
+    }
+
     public function indexAction()
     {
         return new ViewModel();
