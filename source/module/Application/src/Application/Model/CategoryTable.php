@@ -4,7 +4,10 @@ use Zend\Db\Sql\Sql;
 use Zend\Db\TableGateway\TableGateway;
 
 class CategoryTable{
+
     public $tableGateway;
+    protected $tableName = 'productcategories';
+
     public function __construct(TableGateway $tableGateway)
     {
         $this->tableGateway = $tableGateway;
@@ -13,7 +16,7 @@ class CategoryTable{
     public function getCategory()
     {
         $sql = new Sql($this->tableGateway->getAdapter());
-        $select = $sql->select('productcategories');
+        $select = $sql->select($this->tableName);
         $select->order('CategoryID');
         $statement = $sql->prepareStatementForSqlObject($select);
         $result = $statement->execute();

@@ -22,13 +22,16 @@ class ProductController extends BaseController
 
     public function indexAction()
     {
-        return new ViewModel();
+        $categories = $this->getCategoryTable()->getCategory();
+        return new ViewModel([
+            'categories' => $categories,
+        ]);
     }
 
     public function detailAction()
     {
         $this->setPageTitle('Details');
-        $result = $this->getCategoryTable()->getCategory();
+        $categories = $this->getCategoryTable()->getCategory();
 
         $id = $this->params()->fromRoute('id') ? (int)$this->params()->fromRoute('id') : null;
         if(!$id) {
@@ -38,7 +41,7 @@ class ProductController extends BaseController
         $product = $this->getProductTable()->getProductById($id);
 
         return new ViewModel([
-            'categories' => $result,
+            'categories' => $categories,
             'product'    => $product
         ]);
 

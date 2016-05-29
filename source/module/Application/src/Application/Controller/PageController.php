@@ -27,7 +27,10 @@ class PageController extends BaseController
 
     public function newsAction()
     {
-        return new ViewModel();
+        $categories = $this->getCategoryTable()->getCategory();
+        return new ViewModel([
+            'categories' => $categories,
+        ]);
     }
 
     public function contactAction()

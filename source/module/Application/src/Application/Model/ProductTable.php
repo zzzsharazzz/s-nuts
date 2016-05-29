@@ -6,10 +6,11 @@ use Zend\Db\TableGateway\TableGateway;
 
 class ProductTable
 {
-    protected $tableGateway;
-    
     const OFFSET = 0;
     const LIMIT = 10;
+
+    protected $tableGateway;
+    protected $tableName = 'products';
 
     public function __construct(TableGateway $tableGateway)
     {
@@ -21,7 +22,7 @@ class ProductTable
     {
         $sql = new Sql($this->tableGateway->getAdapter());
 
-        $select = $sql->select('products');
+        $select = $sql->select($this->tableName);
 
         $select->offset(self::OFFSET)->limit(self::LIMIT)->order('ProductID DESC');
 
