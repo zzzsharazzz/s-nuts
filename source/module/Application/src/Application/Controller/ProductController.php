@@ -28,6 +28,19 @@ class ProductController extends BaseController
     public function detailAction()
     {
         $this->setPageTitle('Details');
-        return new ViewModel();
+        $result = $this->getCategoryTable()->getCategory();
+
+        $id = $this->params()->fromRoute('id') ? (int)$this->params()->fromRoute('id') : null;
+        if(!$id) {
+            return $this->redirect()->toRoute('/');
+        }
+
+        $product = $this->getProductTable()->getProductById($id);
+
+        return new ViewModel([
+            'categories' => $result,
+            'product'    => $product
+        ]);
+
     }
 }

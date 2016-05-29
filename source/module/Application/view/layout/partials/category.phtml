@@ -1,0 +1,14 @@
+<div class="left-sidebar">
+    <h2>Category</h2>
+    <div class="panel-group category-products" id="accordian">
+        <!--category-products-->
+        <?php foreach ($categories as $result): ?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="#"><?php echo $result['CategoryName']?></a></h4>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+    <!--/category-products-->
+</div>

@@ -157,8 +157,9 @@ return array(
             'layout/footer'           => __DIR__ . '/../view/layout/partials/footer.phtml',
             'layout/recommend'        => __DIR__ . '/../view/layout/partials/recommend.phtml',
             'layout/menu'             => __DIR__ . '/../view/layout/partials/menu.phtml',
-            'layout/header'           => __DIR__ . '/../view/layout/partials/header.phtml'
-        ),
+            'layout/header'           => __DIR__ . '/../view/layout/partials/header.phtml',
+            'layout/category'         => __DIR__ . '/../view/layout/partials/category.phtml'
+         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),

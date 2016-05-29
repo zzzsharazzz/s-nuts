@@ -9,6 +9,8 @@
 
 namespace Application;
 
+use Application\Model\Category;
+use Application\Model\CategoryTable;
 use Application\Model\Products;
 use Application\Model\ProductTable;
 use Zend\Mvc\ModuleRouteListener;
@@ -55,6 +57,17 @@ class Module
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Products());
                     return new TableGateway('products', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Application\Model\CategoryTable' =>  function($sm) {
+                    $tableGateway = $sm->get('CategoryTableGateWay');
+                    $table = new CategoryTable($tableGateway);
+                    return $table;
+                },
+                'CategoryTableGateWay' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Category());
+                    return new TableGateway('categories', $dbAdapter, null, $resultSetPrototype);
                 },
                 
             ),

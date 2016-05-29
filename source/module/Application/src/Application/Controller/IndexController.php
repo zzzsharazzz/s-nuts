@@ -22,10 +22,13 @@ class IndexController extends BaseController
     public function indexAction()
     {
         $featuredProduct = $this->getProductTable()->getFeatureProducts();
-        
+        $categories = $this->getCategoryTable()->getCategory();
         return new ViewModel([
-            'featuredProduct' => $featuredProduct
+            'featuredProduct' => $featuredProduct,
+            'categories' => $categories
         ]);
+
+
     }
 
     public function newsAction()
