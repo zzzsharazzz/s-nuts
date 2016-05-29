@@ -19,14 +19,18 @@ class IndexController extends BaseController
        $this->setPageTitle('Homepage');
         parent::onDispatch($e);
    }
-
     public function indexAction()
     {
-        return new ViewModel();
+        $featuredProduct = $this->getProductTable()->getFeatureProducts();
+        
+        return new ViewModel([
+            'featuredProduct' => $featuredProduct
+        ]);
     }
 
     public function newsAction()
     {
+        
         return new ViewModel();
     }
 }

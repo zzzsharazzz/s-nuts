@@ -9,8 +9,12 @@
 
 namespace Application;
 
+use Application\Model\Products;
+use Application\Model\ProductTable;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
 
 class Module
 {
@@ -36,4 +40,26 @@ class Module
             ),
         );
     }
+
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'Application\Model\ProductTable' =>  function($sm) {
+                    $tableGateway = $sm->get('ProductTableGateWay');
+                    $table = new ProductTable($tableGateway);
+                    return $table;
+                },
+                'ProductTableGateWay' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Products());
+                    return new TableGateway('products', $dbAdapter, null, $resultSetPrototype);
+                },
+                
+            ),
+        );
+    }
+
+
 }

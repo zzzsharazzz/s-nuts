@@ -7,4 +7,5 @@
  */
 
 define('ROOT', __DIR__ . '../');
-define('SITE_URL', 'http://dongnguyen.xyz/');
+define('SITE_URL', 'http://snuts.localhost/');
+define('CURRENCY','$');
