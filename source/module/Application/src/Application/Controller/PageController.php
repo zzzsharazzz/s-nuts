@@ -16,6 +16,7 @@ class PageController extends BaseController
 {
     public function onDispatch(MvcEvent $e)
     {
+        // upload by phpstorm
         $this->setPageTitle('Pages');
         parent::onDispatch($e);
     }
