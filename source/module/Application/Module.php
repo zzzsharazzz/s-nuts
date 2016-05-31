@@ -67,7 +67,7 @@ class Module
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Category());
-                    return new TableGateway('categories', $dbAdapter, null, $resultSetPrototype);
+                    return new TableGateway('productcategories', $dbAdapter, null, $resultSetPrototype);
                 },
                 
             ),

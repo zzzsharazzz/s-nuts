@@ -61,4 +61,8 @@ class ProductTable
         }
         return $result;
     }
+
+    public function fetchAll() {
+        return $this->tableGateway->select();
+    }
 }

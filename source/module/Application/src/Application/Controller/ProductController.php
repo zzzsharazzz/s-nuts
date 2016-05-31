@@ -23,8 +23,10 @@ class ProductController extends BaseController
     public function indexAction()
     {
         $categories = $this->getCategoryTable()->getCategory();
+        $product = $this->getProductTable()->fetchAll();
         return new ViewModel([
             'categories' => $categories,
+            'products' => $product
         ]);
     }
 

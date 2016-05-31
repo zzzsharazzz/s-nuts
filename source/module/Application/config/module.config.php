@@ -111,6 +111,21 @@ return array(
                 ),
             ),
 
+            'category' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/category[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Category',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+
         ),
     ),
     'service_manager' => array(
@@ -138,7 +153,8 @@ return array(
             'Application\Controller\Auth' => Controller\AuthController::class,
             'Application\Controller\Product' => Controller\ProductController::class,
             'Application\Controller\Page' => Controller\PageController::class,
-            'Application\Controller\Cart' => Controller\CartController::class
+            'Application\Controller\Cart' => Controller\CartController::class,
+            'Application\Controller\Category' => Controller\CategoryController::class
         ),
     ),
     'view_manager' => array(

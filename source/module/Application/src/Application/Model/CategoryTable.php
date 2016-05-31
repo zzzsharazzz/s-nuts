@@ -22,4 +22,18 @@ class CategoryTable{
         $result = $statement->execute();
         return $result;
     }
+
+
+    public function getCategoryById($id)
+    {
+        $sql = new Sql($this->tableGateway->getAdapter());
+        $select = $sql->select($this->tableName);
+        $select->where([
+           'CategoryID' => $id
+        ]);
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $result = $statement->execute()->current(); 
+        return $result;
+    }
+
 }
