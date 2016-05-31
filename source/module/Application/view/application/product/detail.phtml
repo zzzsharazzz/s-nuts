@@ -10,7 +10,7 @@
                     <!--product-details-->
                     <div class="col-sm-5">
                         <div class="view-product">
-                            <img src="<?php echo SITE_URL ?>images/product-details/1.jpg" alt="" />
+                            <img class="img-responsive" src="<?php echo SITE_URL . $product->ProductImage ?>" alt="" />
                             <h3>ZOOM</h3>
                         </div>
                         <div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -45,13 +45,13 @@
                     <div class="col-sm-7">
                         <div class="product-information"><!--/product-information-->
                             <img src="<?php echo SITE_URL ?>images/product-details/new.jpg" class="newarrival" alt="" />
-                            <h2>Anne Klein Sleeveless Colorblock Scuba</h2>
-                            <p>Web ID: 1089772</p>
+                            <h2><?php echo $product->ProductName ?></h2>
+                            <p>SKU: <?php echo $product->ProductSKU ?></p>
                             <img src="<?php echo SITE_URL ?>images/product-details/rating.png" alt="" />
 								<span>
-									<span>US $59</span>
+									<span>US $<?php echo $product->ProductPrice ?></span>
 									<label>Quantity:</label>
-									<input type="text" value="3" />
+									<input type="text" value="<?php echo $product->ProductStock ?>" />
 									<button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart

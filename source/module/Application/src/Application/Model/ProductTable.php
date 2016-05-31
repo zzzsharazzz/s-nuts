@@ -24,7 +24,11 @@ class ProductTable
 
         $select = $sql->select($this->tableName);
 
-        $select->offset(self::OFFSET)->limit(self::LIMIT)->order('ProductID DESC');
+        $select->where([
+            'IsFeatured' => 1
+        ])->offset(self::OFFSET)
+            ->limit(self::LIMIT)
+            ->order('ProductID DESC');
 
         $statement = $sql->prepareStatementForSqlObject($select);
 
@@ -41,9 +45,20 @@ class ProductTable
 
         $row = $rowset->current();
         if (!$row) {
-            throw new \Exception("Could not find row $id");
+            return false;
         }
         return $row;
         
+    }
+
+    public function getProductByCategoryId($categoryId) {
+        $result = $this->tableGateway->select([
+            'ProductCategoryID' => $categoryId
+        ]);
+
+        if (!$result) {
+            return false;
+        }
+        return $result;
     }
 }

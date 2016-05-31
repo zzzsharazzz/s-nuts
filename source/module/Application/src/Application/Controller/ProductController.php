@@ -40,9 +40,16 @@ class ProductController extends BaseController
 
         $product = $this->getProductTable()->getProductById($id);
 
+        $recommended = [];
+        if($product) {
+            $recommended = $this->getProductTable()->getProductByCategoryId($product->ProductID);
+        }
+
+
         return new ViewModel([
             'categories' => $categories,
-            'product'    => $product
+            'product'    => $product,
+            'recommended' => $recommended
         ]);
 
     }
