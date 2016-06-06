@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Checkout | E-Shopper</title>
+    <title>Checkout | S-Nuts</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -22,18 +22,21 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-</head><!--/head-->
+</head>
+<!--/head-->
 
 <body>
-	<header id="header"><!--header-->
-		<div class="header_top"><!--header_top-->
+	<header id="header">
+		<!--header-->
+		<div class="header_top">
+			<!--header_top-->
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-								<li><a href=""><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><a href=""><i class="fa fa-envelope"></i> admin@s-nuts.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -50,9 +53,11 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/header_top-->
-		
-		<div class="header-middle"><!--header-middle-->
+		</div>
+		<!--/header_top-->
+
+		<div class="header-middle">
+			<!--header-middle-->
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-4">
@@ -61,24 +66,23 @@
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									USA
+								<button type="button" class="btn btn-default dropdown-toggle countryList" data-toggle="dropdown">
+									Vietnam
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="">Canada</a></li>
-									<li><a href="">UK</a></li>
+									<li name="vietnam" class="countryListItem display-none"><a href="#">Vietnam</a></li>
+									<li name="usa" class="countryListItem"><a href="#">USA</a></li>
 								</ul>
 							</div>
-							
 							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									DOLLAR
+								<button type="button" class="btn btn-default dropdown-toggle currencyList" data-toggle="dropdown">
+									VND
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
-									<li><a href="">Canadian Dollar</a></li>
-									<li><a href="">Pound</a></li>
+									<li name="vietnam" class="currencyListItem display-none"><a href="#">VND</a></li>
+									<li name="usa" class="currencyListItem"><a href="#">Dollar</a></li>
 								</ul>
 							</div>
 						</div>
@@ -86,9 +90,7 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-user"></i> Account</a></li>
-								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="checkout.html" class="active"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
 								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
 							</ul>
@@ -96,9 +98,11 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/header-middle-->
-	
-		<div class="header-bottom"><!--header-bottom-->
+		</div>
+		<!--/header-middle-->
+
+		<div class="header-bottom">
+			<!--header-bottom-->
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-9">
@@ -114,21 +118,10 @@
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index.html">Home</a></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html" class="active">Checkout</a></li> 
-										<li><a href="cart.html">Cart</a></li> 
-										<li><a href="login.html">Login</a></li> 
-                                    </ul>
-                                </li> 
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li> 
-								<li><a href="404.html">404</a></li>
+                                    <ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a href="index.html" class="active">Home</a></li>
+								<li><a href="products.html">Products</a></li>
+								<li><a href="news.html">News</a></li>
 								<li><a href="contact-us.html">Contact</a></li>
 							</ul>
 						</div>
@@ -140,8 +133,10 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/header-bottom-->
-	</header><!--/header-->
+		</div>
+		<!--/header-bottom-->
+	</header>
+	<!--/header-->
 
 	<section id="cart_items">
 		<div class="container">
@@ -150,7 +145,8 @@
 				  <li><a href="#">Home</a></li>
 				  <li class="active">Check out</li>
 				</ol>
-			</div><!--/breadcrums-->
+			</div>
+			<!--/breadcrums-->
 
 			<div class="step-one">
 				<h2 class="heading">Step1</h2>
@@ -169,11 +165,13 @@
 						<a href=""><i class="fa fa-times"></i>Cancel</a>
 					</li>
 				</ul>
-			</div><!--/checkout-options-->
+			</div>
+			<!--/checkout-options-->
 
 			<div class="register-req">
 				<p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
-			</div><!--/register-req-->
+			</div>
+			<!--/register-req-->
 
 			<div class="shopper-informations">
 				<div class="row">
@@ -378,91 +376,11 @@
 					</span>
 				</div>
 		</div>
-	</section> <!--/#cart_items-->
+	</section>
+	<!--/#cart_items-->
 
-	
-
-	<footer id="footer"><!--Footer-->
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="companyinfo">
-							<h2><span>e</span>-shopper</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-						</div>
-					</div>
-					<div class="col-sm-7">
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe1.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe2.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe3.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe4.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="address">
-							<img src="images/home/map.png" alt="" />
-							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
+	<footer id="footer">
+		<!--Footer-->
 		<div class="footer-widget">
 			<div class="container">
 				<div class="row">
@@ -470,7 +388,7 @@
 						<div class="single-widget">
 							<h2>Service</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Online Help</a></li>
+								<li><a href="">On-line Help</a></li>
 								<li><a href="">Contact Us</a></li>
 								<li><a href="">Order Status</a></li>
 								<li><a href="">Change Location</a></li>
@@ -480,22 +398,10 @@
 					</div>
 					<div class="col-sm-2">
 						<div class="single-widget">
-							<h2>Quock Shop</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">T-Shirt</a></li>
-								<li><a href="">Mens</a></li>
-								<li><a href="">Womens</a></li>
-								<li><a href="">Gift Cards</a></li>
-								<li><a href="">Shoes</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
 							<h2>Policies</h2>
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="">Terms of Use</a></li>
-								<li><a href="">Privecy Policy</a></li>
+								<li><a href="">Privacy Policy</a></li>
 								<li><a href="">Refund Policy</a></li>
 								<li><a href="">Billing System</a></li>
 								<li><a href="">Ticket System</a></li>
@@ -509,7 +415,7 @@
 								<li><a href="">Company Information</a></li>
 								<li><a href="">Careers</a></li>
 								<li><a href="">Store Location</a></li>
-								<li><a href="">Affillate Program</a></li>
+								<li><a href="">Affiliate Program</a></li>
 								<li><a href="">Copyright</a></li>
 							</ul>
 						</div>
@@ -528,19 +434,14 @@
 				</div>
 			</div>
 		</div>
-		
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+					<p class="pull-left">Copyright © 2016 S-Nuts. All rights reserved.</p>
 				</div>
 			</div>
 		</div>
-		
 	</footer><!--/Footer-->
-	
-
 
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>

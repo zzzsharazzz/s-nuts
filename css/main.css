@@ -2540,3 +2540,8 @@ h2.title {
 .cursor_hover {
 	cursor: pointer;
 }
+
+.logo {
+	width: 139px;
+	height: 39px;
+}
