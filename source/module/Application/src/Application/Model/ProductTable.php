@@ -1,5 +1,6 @@
 <?php
 namespace Application\Model;
+use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\Sql\Sql;
 use Zend\Db\Sql\Where;
 use Zend\Db\TableGateway\TableGateway;
@@ -7,7 +8,7 @@ use Zend\Db\TableGateway\TableGateway;
 class ProductTable
 {
     const OFFSET = 0;
-    const LIMIT = 10;
+    const LIMIT = 9;
 
     protected $tableGateway;
     protected $tableName = 'products';
@@ -25,10 +26,10 @@ class ProductTable
         $select = $sql->select($this->tableName);
 
         $select->where([
-            'IsFeatured' => 1
+            'is_featured' => 1
         ])->offset(self::OFFSET)
             ->limit(self::LIMIT)
-            ->order('ProductID DESC');
+            ->order('product_id DESC');
 
         $statement = $sql->prepareStatementForSqlObject($select);
 
@@ -39,30 +40,80 @@ class ProductTable
     }
     public function getProductById($id){
 
-        $rowset = $this->tableGateway->select([
-            'ProductID' => $id
+        $sql = new Sql($this->tableGateway->getAdapter());
+
+        $select = $sql->select($this->tableName);
+
+        $select->where([
+            'product_id' => $id
         ]);
 
-        $row = $rowset->current();
-        if (!$row) {
-            return false;
-        }
-        return $row;
+        $statement = $sql->prepareStatementForSqlObject($select);
+
+        $result = $statement->execute()->current();
+
+        return $result;
         
     }
 
     public function getProductByCategoryId($categoryId) {
-        $result = $this->tableGateway->select([
-            'ProductCategoryID' => $categoryId
+        $sql = new Sql($this->tableGateway->getAdapter());
+
+        $select = $sql->select($this->tableName);
+
+        $select->where([
+            'category_id' => $categoryId
         ]);
 
-        if (!$result) {
-            return false;
+        $statement = $sql->prepareStatementForSqlObject($select);
+
+        $results = $statement->execute();
+
+        $data = [];
+
+        foreach ($results as $row) {
+            $data[] = $row;
         }
-        return $result;
+
+        return $data;
     }
 
     public function fetchAll() {
-        return $this->tableGateway->select();
+        $sql = new Sql($this->tableGateway->getAdapter());
+
+        $select = $sql->select($this->tableName);
+
+        $statement = $sql->prepareStatementForSqlObject($select);
+
+        $results = $statement->execute();
+
+        $data = [];
+
+        foreach ($results as $row) {
+            $data[] = $row;
+        }
+
+        return $data;
     }
+
+    public function getRecommendedProducts()
+    {
+        $sql = new Sql($this->tableGateway->getAdapter());
+
+        $select = $sql->select($this->tableName);
+
+        $select->where([
+            'is_recommended' => 1
+        ])->offset(self::OFFSET)
+            ->limit(self::LIMIT)
+            ->order('product_id DESC');
+
+        $statement = $sql->prepareStatementForSqlObject($select);
+
+        $results = $statement->execute();
+
+        return $results;
+
+    }
+
 }

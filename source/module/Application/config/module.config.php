@@ -136,6 +136,12 @@ return array(
         'factories' => array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
         ),
+        'aliases' => array(
+            'Zend\Authentication\AuthenticationService' => 'my_auth_service',
+        ),
+        'invokables' => array(
+            'my_auth_service' => 'Zend\Authentication\AuthenticationService',
+        ),
     ),
     'translator' => array(
         'locale' => 'en_US',
@@ -171,10 +177,11 @@ return array(
             'layout/slider'           => __DIR__ . '/../view/layout/partials/slider.phtml',
             'layout/sidebar'          => __DIR__ . '/../view/layout/partials/sidebar.phtml',
             'layout/footer'           => __DIR__ . '/../view/layout/partials/footer.phtml',
-            'layout/recommend'        => __DIR__ . '/../view/layout/partials/recommend.phtml',
+            'layout/recommended'      => __DIR__ . '/../view/layout/partials/recommend.phtml',
             'layout/menu'             => __DIR__ . '/../view/layout/partials/menu.phtml',
             'layout/header'           => __DIR__ . '/../view/layout/partials/header.phtml',
-            'layout/category'         => __DIR__ . '/../view/layout/partials/category.phtml'
+            'layout/category'         => __DIR__ . '/../view/layout/partials/category.phtml',
+            'layout/paginator'         => __DIR__ . '/../view/layout/partials/paginator.phtml',
          ),
         'template_path_stack' => array(
             __DIR__ . '/../view',

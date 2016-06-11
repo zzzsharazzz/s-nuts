@@ -16,7 +16,12 @@ class BaseController extends AbstractActionController
 {
     protected $productTable;
     protected $categoryTable;
+    protected $imageTable;
 
+    public function onDispatch(MvcEvent $e)
+    {
+        parent::onDispatch($e);
+    }
 
     public function setPageTitle($title)
     {
@@ -45,6 +50,14 @@ class BaseController extends AbstractActionController
     public function getCategory()
     {
         return $this->getCategoryTable()->getCategory();
+    }
+
+    public function getImageTable() {
+        if(!$this->imageTable){
+            $sm = $this->getServiceLocator();
+            $this->imageTable = $sm->get('Application\Model\ImageTable');
+        }
+        return $this->imageTable;
     }
 
 }

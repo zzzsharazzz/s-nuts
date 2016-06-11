@@ -11,12 +11,17 @@ namespace Application;
 
 use Application\Model\Category;
 use Application\Model\CategoryTable;
+use Application\Model\Images;
+use Application\Model\ImageTable;
 use Application\Model\Products;
 use Application\Model\ProductTable;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Authentication\Adapter\DbTable as DbAuthAdapter;
+use Zend\Authentication\AuthenticationService;
+use Zend\Session\Container;
 
 class Module
 {
@@ -67,9 +72,28 @@ class Module
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Category());
-                    return new TableGateway('productcategories', $dbAdapter, null, $resultSetPrototype);
+                    return new TableGateway('categories', $dbAdapter, null, $resultSetPrototype);
                 },
-                
+
+                'Application\Model\ImageTable' =>  function($sm) {
+                    $tableGateway = $sm->get('ImageTableGateWay');
+                    $table = new ImageTable($tableGateway);
+                    return $table;
+                },
+                'ImageTableGateWay' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Images());
+                    return new TableGateway('images', $dbAdapter, null, $resultSetPrototype);
+                },
+                'AuthService' => function ($serviceManager) {
+                    $adapter = $serviceManager->get('Zend\Db\Adapter\Adapter');
+                    $dbAuthAdapter = new DbAuthAdapter ( $adapter, 'users', 'user_email', 'user_password' );
+
+                    $auth = new AuthenticationService();
+                    $auth->setAdapter ( $dbAuthAdapter );
+                    return $auth;
+                }
             ),
         );
     }

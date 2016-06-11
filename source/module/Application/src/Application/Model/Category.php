@@ -3,29 +3,23 @@ namespace Application\Model;
 
 class Category
 {
-    public $CategoryID;
-    public $CategoryName;
-
-    public function exchangeArray($data)
-    {
-        $this->CategoryID = (!empty($data['CategoryID']))?$data['CategoryID']:null;
-        $this->CategoryID = (!empty($data['CategoryName']))?$data['CategoryName']:null;
-    }
+    private $categoryId;
+    private $categoryName;
 
     /**
      * @return mixed
      */
-    public function getCategoryID()
+    public function getCategoryId()
     {
-        return $this->CategoryID;
+        return $this->categoryId;
     }
 
     /**
-     * @param mixed $CategoryID
+     * @param mixed $categoryId
      */
-    public function setCategoryID($CategoryID)
+    public function setCategoryId($categoryId)
     {
-        $this->CategoryID = $CategoryID;
+        $this->categoryId = $categoryId;
     }
 
     /**
@@ -33,15 +27,19 @@ class Category
      */
     public function getCategoryName()
     {
-        return $this->CategoryName;
+        return $this->categoryName;
     }
 
     /**
-     * @param mixed $CategoryName
+     * @param mixed $categoryName
      */
-    public function setCategoryName($CategoryName)
+    public function setCategoryName($categoryName)
     {
-        $this->CategoryName = $CategoryName;
+        $this->categoryName = $categoryName;
+    }
+
+    public function exchangeArray($data) {
+        return null;
     }
 
     

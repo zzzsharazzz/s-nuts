@@ -9,11 +9,17 @@
 
 namespace Application\Controller;
 
+use Zend\Paginator\Paginator;
 use Zend\View\Model\ViewModel;
 use Zend\Mvc\MvcEvent;
+use Zend\Paginator\Adapter\ArrayAdapter;
 
 class ProductController extends BaseController
 {
+
+    const PAGE_RANGE = 5;
+    const ITEM_PER_PAGE = 2;
+
     public function onDispatch(MvcEvent $e)
     {
         $this->setPageTitle('Products');
@@ -24,9 +30,18 @@ class ProductController extends BaseController
     {
         $categories = $this->getCategoryTable()->getCategory();
         $product = $this->getProductTable()->fetchAll();
+
+        $currentPage = $this->params()->fromQuery('page') ? (int)$this->params()->fromQuery('page') : 1;
+
+        $paginator = new Paginator(new ArrayAdapter($product));
+        $paginator->setPageRange(self::PAGE_RANGE);
+        $paginator->setCurrentPageNumber($currentPage);
+        $paginator->setItemCountPerPage(self::ITEM_PER_PAGE);
+
         return new ViewModel([
             'categories' => $categories,
-            'products' => $product
+            'products' => $paginator,
+            'imageTable' => $this->getImageTable()
         ]);
     }
 
@@ -44,14 +59,15 @@ class ProductController extends BaseController
 
         $recommended = [];
         if($product) {
-            $recommended = $this->getProductTable()->getProductByCategoryId($product->ProductID);
+            $recommenedProduct = $this->getProductTable()->getRecommendedProducts();
         }
 
 
         return new ViewModel([
             'categories' => $categories,
             'product'    => $product,
-            'recommended' => $recommended
+            'recommenedProduct' => $recommenedProduct,
+            'imageTable' => $this->getImageTable()
         ]);
 
     }

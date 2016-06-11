@@ -1,3 +1,4 @@
+<?php $userEmail = $this->identity(); ?>
 <header id="header">
     <!--header-->
     <div class="header_top">
@@ -47,7 +48,6 @@
                                 <li name="usa" class="countryListItem"><a href="#">USA</a></li>
                             </ul>
                         </div>
-
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle currencyList" data-toggle="dropdown">
                                 VND
@@ -63,9 +63,15 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
+                            <?php if(!empty($userEmail)) : ?>
                             <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                            <li><a href="<?php echo $this->url('cart') ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="<?php echo $this->url('auth', ['action' => 'login']); ?>"><i class="fa fa-lock"></i> Login</a></li>
+                            <?php endif ?>
+                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <?php if(empty($userEmail)) : ?>
+                            <li><a href="<?php echo $this->url('auth') ?>"><i class="fa fa-lock"></i> Login</a></li>
+                            <?php else : ?>
+                            <li><a href="<?php echo $this->url('auth', ['action' => 'logout']) ?>"><i class="fa fa-lock"></i> Logout</a></li>
+                            <?php endif ?>
                         </ul>
                     </div>
                 </div>
@@ -88,14 +94,14 @@
                         </button>
                     </div>
                     <div class="mainmenu pull-left">
-                        <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="/" class="active">Home</a></li>
-                            <li><a href="<?php echo $this->url('product') ?>">Products</a></li>
-                            <li><a href="<?php echo $this->url('pages', ['action' => 'news']) ?>">News</a></li>
-                            <li><a href="<?php echo $this->url('pages' , ['action' => 'contact']) ?>">Contact</a></li>
-                        </ul>
-                    </div>
+                    <ul class="nav navbar-nav collapse navbar-collapse">
+                        <li><a href="/" class="active">Home</a></li>
+                        <li><a id="route-product" href="<?php echo $this->url('product') ?>">Products</a></li>
+                        <li><a id="route-news" href="<?php echo $this->url('pages', ['action' => 'news']) ?>">News</a></li>
+                        <li><a id="route-contact" href="<?php echo $this->url('pages' , ['action' => 'contact']) ?>">Contact</a></li>
+                    </ul>
                 </div>
+            </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
                         <input type="text" placeholder="Search"/>

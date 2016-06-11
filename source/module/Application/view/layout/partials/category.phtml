@@ -5,7 +5,7 @@
         <?php foreach ($categories as $result): ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4 class="panel-title"><a href="<?php echo $this->url('category', ['action' => 'index', 'id' => $result['CategoryID']]) ?>"><?php echo $result['CategoryName']?></a></h4>
+                <h4 class="panel-title"><a href="<?php echo $this->url('category', ['action' => 'index', 'id' => $result['category_id']]) ?>"><?php echo $result['category_name']?></a></h4>
             </div>
         </div>
         <?php endforeach; ?>

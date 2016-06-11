@@ -6,7 +6,7 @@ use Zend\Db\TableGateway\TableGateway;
 class CategoryTable{
 
     public $tableGateway;
-    protected $tableName = 'productcategories';
+    protected $tableName = 'categories';
 
     public function __construct(TableGateway $tableGateway)
     {
@@ -17,7 +17,7 @@ class CategoryTable{
     {
         $sql = new Sql($this->tableGateway->getAdapter());
         $select = $sql->select($this->tableName);
-        $select->order('CategoryID');
+        $select->order('category_id');
         $statement = $sql->prepareStatementForSqlObject($select);
         $result = $statement->execute();
         return $result;
@@ -29,7 +29,7 @@ class CategoryTable{
         $sql = new Sql($this->tableGateway->getAdapter());
         $select = $sql->select($this->tableName);
         $select->where([
-           'CategoryID' => $id
+           'category_id' => $id
         ]);
         $statement = $sql->prepareStatementForSqlObject($select);
         $result = $statement->execute()->current(); 

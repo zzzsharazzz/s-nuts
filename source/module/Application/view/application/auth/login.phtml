@@ -4,14 +4,25 @@
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="login-form"><!--login form-->
                     <h2>Login to your account</h2>
-                    <form action="#">
-                        <input type="text" placeholder="Name" />
-                        <input type="email" placeholder="Email Address" />
-							<span>
-								<input type="checkbox" class="checkbox">
-								Keep me signed in
-							</span>
-                        <button type="submit" class="btn btn-default">Login</button>
+
+                    <?php
+                        // Usable in any of your .phtml files
+                        echo $this->flashMessenger()->render();
+                        $form = $this->loginForm;
+                        $form->prepare();
+                        echo $this->form()->openTag($form);
+                    ?>
+                        <?php echo $this->formElement($form->get('email')); ?>
+                        <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('email'));?></span>
+                        <?php echo $this->formElement($form->get('password')); ?>
+                        <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('password'));?></span>
+                        <?php
+                            echo $this->formRow($form->get('loginCsrf'));
+                            echo $this->formElement($form->get('submit'));
+                        ?>
+                        <?php
+                            echo $this->form()->closeTag($form);
+                        ?>
                     </form>
                 </div><!--/login form-->
             </div>

@@ -1,0 +1,31 @@
+<!--features_items-->
+
+<div class="recommended_items">
+    <!--recommended_items-->
+    <h2 class="title text-center">recommended items</h2>
+    <?php
+    foreach($recommenedProduct as $product) :
+        $images = $imageTable->getImagesByProductId($product['product_id']);
+        if(!empty($images)) {
+            $image = IMAGE_URL . $product['category_id'] . '/' . $images[0]['image_name'];
+        } else {
+            $image = '';
+        }
+        ?>
+        <div class="col-sm-4">
+            <div class="product-image-wrapper">
+                <div class="single-products" >
+                    <div class="productinfo text-center cursor_hover">
+                        <img class="img-product" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => $product['product_id']]) ?>" alt="" src="<?php echo $image ?>" />
+                        <?php echo '<h2>'.$product['product_price'].CURRENCY.'</h2>'; ?>
+                        <?php echo '<p>'.$product['product_name'].'</p>';?>
+                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    endforeach;
+    ?>
+</div>
+<!--/recommended_items-->

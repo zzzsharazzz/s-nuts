@@ -1,8 +1,3 @@
-<section id="advertisement">
-    <div class="container">
-        <img src="<?php echo SITE_URL ?>images/shop/advertisement.jpg" alt="" />
-    </div>
-</section>
 
 <section>
     <div class="container">
@@ -15,14 +10,21 @@
                 <div class="features_items">
                     <!--features_items-->
                     <h2 class="title text-center">Products</h2>
-                    <?php foreach ($products as $product) : ?>
+                    <?php
+                        foreach ($products as $product) :
+                            $imgs = $imageTable->getImagesByProductId($product['product_id']);
+                            $imgUrl = '';
+                            if(!empty($imgs)) {
+                                $imgUrl = IMAGE_URL . $product['category_id'] . '/' . $imgs[0]['image_name'];
+                            }
+                    ?>
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
-                            <div class="single-products" data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => $product->ProductID]) ?>">
+                            <div class="single-products">
                                 <div class="productinfo text-center">
-                                    <img src="<?php echo SITE_URL . $product->ProductThumb ?>" alt="" />
-                                    <h2>$<?php echo $product->ProductPrice ?></h2>
-                                    <p><?php echo $product->ProductName ?></p>
+                                    <img data-url="<?php echo $this->url('product', ['action' => 'detail', 'id' => $product['product_id']]) ?>" src="<?php echo $imgUrl ?>" alt="" />
+                                    <h2>$<?php echo $product['product_price'] ?></h2>
+                                    <p><?php echo $product['product_name'] ?></p>
                                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                             </div>
@@ -30,16 +32,29 @@
                     </div>
                     <?php endforeach; ?>
                     <div class="clearfix"></div>
-                    <ul class="pagination">
-                        <li class="active"><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">&raquo;</a></li>
-                    </ul>
+                    <?php
+                    // add at the end of the file after the table
+                    echo $this->paginationControl(
+                    // the paginator object
+                        $this->products,
+                        // the scrolling style
+                        'sliding',
+                        // the partial to use to render the control
+                        'layout/paginator',
+                        // the route to link to when a user clicks a control link
+                        array(
+                            'route' => 'product'
+                        )
+                    );
+                    ?>
                 </div>
                 <!--features_items-->
             </div>
         </div>
     </div>
 </section>
+
+<?php echo $this->headScript()
+        ->appendFile($this->basePath('js/products.js')) ?>
+
 
