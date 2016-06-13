@@ -1,170 +1,158 @@
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+
+-- phpMyAdmin SQL Dump
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1    Database: snuts
--- ------------------------------------------------------
--- Server version	5.5.5-10.1.10-MariaDB
+-- Host: localhost
+-- Generation Time: Jun 13, 2016 at 01:22 PM
+-- Server version: 10.0.20-MariaDB
+-- PHP Version: 5.2.17
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `orders`
+-- Database: `u914435349_kenpa`
 --
 
-DROP TABLE IF EXISTS `orders`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `orders` (
-  `OrderID` int(11) NOT NULL AUTO_INCREMENT,
-  `OrderUserID` int(11) NOT NULL,
-  `OrderAmount` float DEFAULT NULL,
-  `OrderShipName` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `OrderShipAddress` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `OrderShipAddress2` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `OrderCity` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `OrderState` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `OrderZip` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `OrderCountry` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `OrderPhone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `OrderFax` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `OrderEmail` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `OrderDate` datetime DEFAULT NULL,
-  `OrderShipped` tinyint(1) DEFAULT NULL,
-  `OrderTrackingNumber` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`OrderID`),
-  KEY `fk_user_orders_idx` (`OrderUserID`),
-  CONSTRAINT `fk_user_orders` FOREIGN KEY (`OrderUserID`) REFERENCES `users` (`UserID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `orders`
+-- Table structure for table `categories`
 --
 
-LOCK TABLES `orders` WRITE;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Table structure for table `productcategories`
+-- Dumping data for table `categories`
 --
 
-DROP TABLE IF EXISTS `productcategories`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `productcategories` (
-  `CategoryID` int(11) NOT NULL AUTO_INCREMENT,
-  `CategoryName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`CategoryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO `categories` (`category_id`, `category_name`) VALUES
+(1, 'Mixed Nuts'),
+(2, 'ChestNuts'),
+(3, 'Soy Nuts'),
+(4, 'Peanuts'),
+(5, 'Cacao'),
+(6, 'Almonds');
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `productcategories`
+-- Table structure for table `images`
 --
 
-LOCK TABLES `productcategories` WRITE;
-/*!40000 ALTER TABLE `productcategories` DISABLE KEYS */;
-INSERT INTO `productcategories` VALUES (1,'Category 1'),(2,'Category 2'),(3,'Category 3');
-/*!40000 ALTER TABLE `productcategories` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE TABLE IF NOT EXISTS `images` (
+  `image_id` int(12) NOT NULL AUTO_INCREMENT,
+  `image_name` varchar(100) NOT NULL,
+  `product_id` int(12) NOT NULL,
+  PRIMARY KEY (`image_id`),
+  KEY `k_image_product_idx` (`product_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`image_id`, `image_name`, `product_id`) VALUES
+(1, '1_01.jpg', 1),
+(2, '2_01.jpg', 2),
+(3, '3_01.jpg', 3),
+(4, '4_01.jpg', 4),
+(5, '5_01.jpg', 5),
+(6, '6_01.jpg', 6),
+(7, '7_01.jpg', 7),
+(8, '8_01.jpg', 8),
+(9, '9_01.jpg', 9),
+(10, '10_01.jpg', 10),
+(11, '11_01.jpg', 11),
+(12, '12_01.jpg', 12),
+(13, '13_01.jpg', 13),
+(14, '14_01.jpg', 14),
+(15, '15_01.jpg', 15);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `products`
 --
 
-DROP TABLE IF EXISTS `products`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `products` (
-  `ProductID` int(12) NOT NULL AUTO_INCREMENT,
-  `ProductSKU` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ProductName` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ProductPrice` float DEFAULT NULL,
-  `ProductWeight` float DEFAULT NULL,
-  `ProductCartDesc` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ProductShortDesc` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ProductLongDesc` text COLLATE utf8_unicode_ci,
-  `ProductThumb` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ProductImage` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ProductCategoryID` int(11) DEFAULT NULL,
-  `ProductUpdateDate` datetime DEFAULT NULL,
-  `ProductStock` float DEFAULT NULL,
-  `ProductLive` tinyint(1) DEFAULT NULL,
-  `ProductUnlimited` tinyint(1) DEFAULT NULL,
-  `ProductLocation` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`ProductID`),
-  UNIQUE KEY `ProductSKU_UNIQUE` (`ProductSKU`),
-  KEY `fk_p_c_idx` (`ProductCategoryID`),
-  CONSTRAINT `fk_p_c` FOREIGN KEY (`ProductCategoryID`) REFERENCES `productcategories` (`CategoryID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE IF NOT EXISTS `products` (
+  `product_id` int(12) NOT NULL AUTO_INCREMENT,
+  `product_sku` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `product_name` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `product_price` float DEFAULT NULL,
+  `product_desc` text CHARACTER SET utf8,
+  `category_id` int(11) DEFAULT NULL,
+  `created_time` datetime DEFAULT NULL,
+  `is_new` tinyint(1) DEFAULT NULL,
+  `is_sale` tinyint(1) DEFAULT '0',
+  `is_featured` tinyint(1) DEFAULT '0',
+  `is_recommended` tinyint(1) DEFAULT '0',
+  `is_stock` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`product_id`),
+  UNIQUE KEY `ProductSKU_UNIQUE` (`product_sku`),
+  KEY `fk_product_category_idx` (`category_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `products`
 --
 
-LOCK TABLES `products` WRITE;
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'SKU1','Product 1',100,500,'Cart Desc 1','Short Desc 1','Long Desc 1','/images/products-thumb/Dried Chestnuts.jpg','/images/products-thumb/Dried Chestnuts.jpg',1,NULL,10,NULL,NULL,NULL),(11,'SKU2','Product 1',100,500,'Cart Desc 1','Short Desc 1','Long Desc 1','/images/products-thumb/Dried Chestnuts.jpg','/images/products-thumb/Dried Chestnuts.jpg',1,NULL,10,NULL,NULL,NULL),(12,'SKU3','Product 1',100,500,'Cart Desc 1','Short Desc 1','Long Desc 1','/images/products-thumb/Dried Chestnuts.jpg','/images/products-thumb/Dried Chestnuts.jpg',1,NULL,10,NULL,NULL,NULL),(13,'SKU4','Product 1',100,500,'Cart Desc 1','Short Desc 1','Long Desc 1','/images/products-thumb/Dried Chestnuts.jpg','/images/products-thumb/Dried Chestnuts.jpg',1,NULL,10,NULL,NULL,NULL),(14,'SKU5','Product 1',100,500,'Cart Desc 1','Short Desc 1','Long Desc 1','/images/products-thumb/Dried Chestnuts.jpg','/images/products-thumb/Dried Chestnuts.jpg',1,NULL,10,NULL,NULL,NULL),(15,'SKU6','Product 1',100,500,'Cart Desc 1','Short Desc 1','Long Desc 1','/images/products-thumb/Dried Chestnuts.jpg','/images/products-thumb/Dried Chestnuts.jpg',1,NULL,10,NULL,NULL,NULL),(16,'SKU7','Product 1',100,500,'Cart Desc 1','Short Desc 1','Long Desc 1','/images/products-thumb/Dried Chestnuts.jpg','/images/products-thumb/Dried Chestnuts.jpg',1,NULL,10,NULL,NULL,NULL),(17,'SKU8','Product 1',100,500,'Cart Desc 1','Short Desc 1','Long Desc 1','/images/products-thumb/Dried Chestnuts.jpg','/images/products-thumb/Dried Chestnuts.jpg',1,NULL,10,NULL,NULL,NULL),(18,'SKU9','Product 1',100,500,'Cart Desc 1','Short Desc 1','Long Desc 1','/images/products-thumb/Dried Chestnuts.jpg','/images/products-thumb/Dried Chestnuts.jpg',1,NULL,10,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `products` (`product_id`, `product_sku`, `product_name`, `product_price`, `product_desc`, `category_id`, `created_time`, `is_new`, `is_sale`, `is_featured`, `is_recommended`, `is_stock`) VALUES
+(1, 'SKU1', 'Mixed Nuts (In Shell)', 100, 'Long Desc 1', 1, NULL, NULL, 0, 1, 0, 0),
+(2, 'SKU2', 'Roasted Mixed Nuts (50% Less Salt)', 100, 'Long Desc 1', 1, NULL, NULL, 0, 1, 0, 0),
+(3, 'SKU3', 'Roasted Mixed Nuts (Unsalted)', 100, 'Long Desc 1', 1, NULL, NULL, 0, 1, 0, 0),
+(4, 'SKU4', 'Dried Chestnuts', 100, 'Long Desc 1', 2, NULL, NULL, 0, 1, 0, 0),
+(5, 'SKU5', 'Fresh Chestnuts', 100, 'Long Desc 1', 2, NULL, NULL, 0, 1, 0, 0),
+(6, 'SKU6', 'Organic Soy Beans', 100, 'Long Desc 1', 3, NULL, NULL, 0, 1, 0, 0),
+(7, 'SKU7', 'Roasted Soy Beans (Salted, Whole)', 100, 'Long Desc 1', 3, NULL, NULL, 0, 0, 1, 0),
+(8, 'SKU8', 'Supreme Roasted Mixed Nuts (Unsalted)', 100, 'Long Desc 1', 1, NULL, NULL, 0, 0, 1, 0),
+(9, 'SKU9', 'Jumbo Raw Peanuts (In Shell)', 100, 'Long Desc 1', 4, NULL, NULL, 0, 0, 0, 0),
+(10, 'SKU10', 'Raw Redskin Peanuts', 100, 'Long Desc 1', 4, NULL, NULL, 0, 0, 0, 0),
+(11, 'SKU11', 'Raw Spanish Peanuts', 100, 'Long Desc 1', 4, NULL, NULL, 0, 0, 0, 0),
+(12, 'SKU12', 'Organic Cacao Beans (Peeled)', 100, 'Long Desc 1', 5, NULL, NULL, 0, 0, 0, 0),
+(13, 'SKU13', 'Organic Cacao Beans (Raw)', 100, 'Long Desc 1', 5, NULL, NULL, 0, 0, 0, 0),
+(14, 'SKU14', 'Raw Almonds (No Shell)', 100, 'Long Desc 1', 6, NULL, NULL, 0, 0, 0, 0),
+(15, 'SKU15', 'Roasted Almonds (50% Less Salt)', 100, 'Long Desc 1', 6, NULL, NULL, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `UserID` int(11) NOT NULL AUTO_INCREMENT,
-  `UserEmail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `UserPassword` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserFirstName` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserLastName` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserCity` varchar(90) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserState` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserZip` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserEmailVerified` tinyint(1) DEFAULT NULL,
-  `UserRegistrationDate` datetime DEFAULT NULL,
-  `UserVerificationCode` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserIP` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserPhone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserFax` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserCountry` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserAddress` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `UserAddress2` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`UserID`),
-  UNIQUE KEY `UserEmail_UNIQUE` (`UserEmail`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_email` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `user_password` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `user_firstname` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `user_lastname` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `user_city` varchar(90) CHARACTER SET utf8 DEFAULT NULL,
+  `user_phone` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `user_country` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `user_address` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `user_address2` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `UserEmail_UNIQUE` (`user_email`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `users` (`user_id`, `user_email`, `user_password`, `user_firstname`, `user_lastname`, `user_city`, `user_phone`, `user_country`, `user_address`, `user_address2`) VALUES
+(1, 'admin@email.com', '123456', 'Dong', 'Nguyen', NULL, NULL, NULL, NULL, NULL);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2016-05-29 22:33:27
