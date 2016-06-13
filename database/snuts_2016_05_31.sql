@@ -1,2 +1,0 @@
-ALTER table products
-ADD COLUMN IsFeatured TINYINT(1) DEFAULT 0
