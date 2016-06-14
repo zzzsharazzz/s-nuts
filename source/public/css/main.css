@@ -1125,11 +1125,11 @@ h2.title {
 }
 
 .pagination  .active  a, .pagination  .active  span, .pagination  .active  a:hover, .pagination  .active  span:hover, .pagination  .active  a:focus, .pagination  .active  span:focus {
-  background-color: #3DABEE;
-  border-color: #3DABEE;
-  color: #FFFFFF;
-  cursor: default;
-  z-index: 2;
+  background-color: #3DABEE !important;
+  border-color: #3DABEE !important;
+  color: #FFFFFF !important;
+  cursor: default !important;
+  z-index: 2 !important;
 }
 
 .pagination  li  a, .pagination  li  span {
@@ -2495,6 +2495,7 @@ h2.title {
 	padding: 6px 25px;
 }
 
-a.active {
+h4.panel-title a.active {
   color: #3DABEE !important;
 }
+

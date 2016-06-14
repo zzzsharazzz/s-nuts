@@ -126,6 +126,20 @@ return array(
                 ),
             ),
 
+            'news' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/news[/:id]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Page',
+                        'action'     => 'get-news',
+                    ),
+                ),
+            ),
+
         ),
     ),
     'service_manager' => array(

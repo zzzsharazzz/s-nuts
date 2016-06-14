@@ -1,0 +1,36 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="blog-post-area">
+                        <div class="single-blog-post">
+                            <h3><?php echo $news['news_title'] ?></h3>
+                            <div class="post-meta">
+                                <ul>
+                                    <li><i class="fa fa-user"></i> Mac Doe</li>
+                                    <li><i class="fa fa-clock-o"></i> 1:33 pm</li>
+                                    <li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
+                                </ul>
+								<span>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half-o"></i>
+								</span>
+                            </div>
+                            <a href="">
+                                <img src="<?php echo IMAGE_NEWS_URL . $news['news_image'] ?>" alt="">
+                            </a>
+                            <p class="read">
+                                <?php echo $news['news_content'] ?>
+                            </p>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php echo $this->headScript()
+    ->appendFile($this->basePath('js/news-detail.js')) ?>

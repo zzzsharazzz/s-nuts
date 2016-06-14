@@ -3,6 +3,9 @@ $params = [];
 if(isset($this->id)) {
     $params['id'] = $this->id;
 }
+if(isset($this->action)) {
+    $params['action'] = $this->action;
+}
 ?>
 <?php if ($this->pageCount): ?>
     <div>

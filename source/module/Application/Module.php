@@ -13,6 +13,8 @@ use Application\Model\Category;
 use Application\Model\CategoryTable;
 use Application\Model\Images;
 use Application\Model\ImageTable;
+use Application\Model\News;
+use Application\Model\NewsTable;
 use Application\Model\Products;
 use Application\Model\ProductTable;
 use Zend\Mvc\ModuleRouteListener;
@@ -93,7 +95,19 @@ class Module
                     $auth = new AuthenticationService();
                     $auth->setAdapter ( $dbAuthAdapter );
                     return $auth;
-                }
+                },
+                'Application\Model\NewsTable' =>  function($sm) {
+                    $tableGateway = $sm->get('NewsTableGateWay');
+                    $table = new NewsTable($tableGateway);
+                    return $table;
+                },
+                'NewsTableGateWay' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new News());
+                    return new TableGateway('news', $dbAdapter, null, $resultSetPrototype);
+                },
+
             ),
         );
     }

@@ -17,6 +17,7 @@ class BaseController extends AbstractActionController
     protected $productTable;
     protected $categoryTable;
     protected $imageTable;
+    protected $newsTable;
 
     public function onDispatch(MvcEvent $e)
     {
@@ -58,6 +59,14 @@ class BaseController extends AbstractActionController
             $this->imageTable = $sm->get('Application\Model\ImageTable');
         }
         return $this->imageTable;
+    }
+
+    public function getNewsTable() {
+        if(!$this->newsTable){
+            $sm = $this->getServiceLocator();
+            $this->newsTable = $sm->get('Application\Model\NewsTable');
+        }
+        return $this->newsTable;
     }
 
 }
