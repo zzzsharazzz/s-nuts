@@ -2494,3 +2494,7 @@ h2.title {
 	font-family: 'Roboto', sans-serif;
 	padding: 6px 25px;
 }
+
+a.active {
+  color: #3DABEE !important;
+}
