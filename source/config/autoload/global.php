@@ -14,4 +14,8 @@ return array(
             => 'Zend\Db\Adapter\AdapterServiceFactory',
         ),
     ),
+    'module_layouts' => array(
+        'Application' => 'layout/layout.phtml',
+        'Admin' => 'layout/admin.phtml',
+    ),
 );
