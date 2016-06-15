@@ -49,7 +49,7 @@ class AuthController extends BaseController
                 $this->getAuthService()
                     ->getAdapter()
                     ->setIdentity($data['email'])
-                    ->setCredential($data['password']);
+                    ->setCredential(md5($data['password']));
                 $result = $this->getAuthService()->authenticate();
 
                 if ($result->isValid()) {
