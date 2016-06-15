@@ -32,14 +32,18 @@ class NewsTable {
 
     public function getNewsById($id)
     {
-        $sql = new Sql($this->tableGateway->getAdapter());
-        $select = $sql->select($this->tableName);
-        $select->where([
-           'news_id' => $id
-        ]);
-        $statement = $sql->prepareStatementForSqlObject($select);
-        $results = $statement->execute();
-        return $results->current();
+        try {
+            $sql = new Sql($this->tableGateway->getAdapter());
+            $select = $sql->select($this->tableName);
+            $select->where([
+                'news_id' => $id
+            ]);
+            $statement = $sql->prepareStatementForSqlObject($select);
+            $results = $statement->execute();
+            return $results->current();
+        } catch (\Exception $ex) {
+            return false;
+        }
     }
 
 }

@@ -57,10 +57,10 @@ class PageController extends BaseController
     public function getNewsAction()
     {
         $id = $this->params()->fromRoute('id');
-        if(!$id) {
-            return $this->redirect()->toUrl('/');
-        }
         $news = $this->getNewsTable()->getNewsById($id);
+        if(!$news) {
+            return $this->notFoundAction();
+        }
         $this->setPageTitle($news['news_title']);
         return new ViewModel([
             'news' => $news
