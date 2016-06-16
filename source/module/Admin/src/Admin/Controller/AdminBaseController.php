@@ -19,6 +19,8 @@ class AdminBaseController extends  AbstractActionController
 
     protected $authservice;
     protected $storage;
+    
+    protected $categoryMapper;
 
     public function getAuthService()
     {
@@ -48,5 +50,14 @@ class AdminBaseController extends  AbstractActionController
             $this->flashMessenger()->addErrorMessage('Please login first!');
             return $this->redirect()->toRoute('admin');
         }
+    }
+    
+    public function getCategoryMapper()
+    {
+    	if(!$this->categoryMapper) {
+    		$sm = $this->getServiceLocator();
+    		$this->categoryMapper = $sm->get('CategoryMapper');
+    	}
+    	return $this->categoryMapper;
     }
 }

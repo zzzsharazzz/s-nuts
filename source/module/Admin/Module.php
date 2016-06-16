@@ -15,6 +15,7 @@ use Zend\Mvc\MvcEvent;
 use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Storage;
 use Zend\Authentication\Adapter\DbTable as DbTableAuthAdapter;
+use Admin\Model\CategoryMapper;
 
 class Module implements AutoloaderProviderInterface
 {
@@ -69,6 +70,11 @@ class Module implements AutoloaderProviderInterface
 
                     return $authService;
                 },
+                'CategoryMapper' => function ($sm) {
+	                $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+	                $mapper = new CategoryMapper($dbAdapter);
+	                return $mapper;
+                }
             ),
         );
     }
