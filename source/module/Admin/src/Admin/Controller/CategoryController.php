@@ -9,7 +9,7 @@ use Zend\Paginator\Adapter\Iterator as paginatorIterator;
 
 class CategoryController extends AdminBaseController 
 {
-	const ITEM_PER_PAGE = 10;
+	const ITEM_PER_PAGE = 2;
 	const PAGE_RANGE = 5;
 	
 	public function indexAction() 

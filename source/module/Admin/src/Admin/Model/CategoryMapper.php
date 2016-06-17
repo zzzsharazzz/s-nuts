@@ -34,7 +34,8 @@ class CategoryMapper
 		$entityPrototype = new CategoryEntity();
 		$hydrator = new ClassMethods();
 		$resultset = new HydratingResultSet($hydrator, $entityPrototype);
-		$resultset->initialize($results); 
+		$resultset->initialize($results);
+		$resultset->buffer();
 		return $resultset;
 	}
 	
