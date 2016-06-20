@@ -1,0 +1,8 @@
+<form id="saveCatForm" method="post" action="<?php echo $this->url('categories', ['action' => 'save']) ?>">
+    <div class="col-md-12">
+        <div class="form-group">
+            <input type="hidden" name="category_id" value="<?php echo $cat->getCategoryId() ?>" />
+            <input class="form-control" name="category_name" value="<?php echo $cat->getCategoryName() ?>" />
+        </div>
+    </div>
+</form>

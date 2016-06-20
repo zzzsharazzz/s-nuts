@@ -17,6 +17,11 @@
 					<div id="dataTables-example_wrapper"
 						class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 						<div class="row">
+							<div class="col-md-12 alert-area">
+								<?php echo $this->partial('layout/messages') ?>
+							</div>
+						</div>
+						<div class="row">
 							<div class="col-sm-6">
 								<div class="dataTables_length" id="dataTables-example_length">
 									<!--<label>Show <select name="dataTables-example_length"
@@ -56,25 +61,25 @@
 											<th class="sorting" tabindex="0"
 												aria-controls="dataTables-example" rowspan="1" colspan="1"
 												aria-label="Platform(s): activate to sort column ascending"
-												style="width: 193px;">Action</th>									
+												style="width: 193px;">Action</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php $count = 1 ?>
-										<?php foreach ($categories as $cat) : ?>						
+										<?php foreach ($categories as $cat) : ?>
 										<tr class="gradeA <?php echo $count % 2 != 0 ? 'odd' : 'even' ?>" role="row">
 											<td class="sorting_1"><?php echo $cat->getCategoryId() ?></td>
 											<td><?php echo $cat->getCategoryName() ?></td>
 											<td>
-												<select class="form-control">
-													<option>-----</option>
-	                                                <option>Edit</option>
-	                                                <option>Delete</option>                                              
+												<select class="form-control category-action">
+													<option value="-1">-----</option>
+	                                                <option value="<?php echo $this->url('categories', ['action' => 'edit', 'id' => $cat->getCategoryId()]) ?>">Edit</option>
+	                                                <option value="<?php echo $this->url('categories', ['action' => 'delete', 'id' => $cat->getCategoryId()]) ?>">Delete</option>
                                             	</select>
-											</td>											
+											</td>
 										</tr>
 										<?php $count++ ?>
-										<?php endforeach ?>																	
+										<?php endforeach ?>
 									</tbody>
 								</table>
 							</div>

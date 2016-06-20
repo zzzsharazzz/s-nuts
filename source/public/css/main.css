@@ -153,24 +153,24 @@ a#scrollUp i{
 }
 
 .countryList, .currencyList {
-  border-radius: 0 !important;
-  color: #B4B1AB !important;
-  font-size: 12px !important;
-  margin-right: 20px !important;
-  padding: 2px 15px !important;
-  margin-top: 10px !important;
+  border-radius: 0;
+  color: #B4B1AB;
+  font-size: 12px;
+  margin-right: 20px;
+  padding: 2px 15px;
+  margin-top: 10px;
 }
 
 .countryList:hover, .currencyList:hover {
-	background:#3DABEE !important;
-	color:#fff !important;
-	border-color:#3DABEE !important;
+	background:#3DABEE;
+	color:#fff;
+	border-color:#3DABEE;
 }
 
 .countryList:active, .currencyList:active, .countryList.active, .currencyList.active {
-  background: none repeat scroll 0 0 #3DABEE !important;
-  box-shadow: inherit !important;
-  outline: 0 none !important;
+  background: none repeat scroll 0 0 #3DABEE;
+  box-shadow: inherit;
+  outline: 0 none;
 }
 
 .btn-group.open .dropdown-toggle {
@@ -2498,4 +2498,6 @@ h2.title {
 h4.panel-title a.active {
   color: #3DABEE !important;
 }
+
+
 

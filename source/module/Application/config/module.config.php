@@ -196,6 +196,7 @@ return array(
             'layout/header'           => __DIR__ . '/../view/layout/partials/header.phtml',
             'layout/category'         => __DIR__ . '/../view/layout/partials/category.phtml',
             'layout/paginator'         => __DIR__ . '/../view/layout/partials/paginator.phtml',
+            'layout/messages'         => __DIR__ . '/../view/layout/partials/messages.phtml',
          ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
