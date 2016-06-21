@@ -22,6 +22,8 @@ class AdminBaseController extends  AbstractActionController
     
     protected $categoryMapper;
 
+    const ERROR_MSG = 'Sorry, something went wrong! Please try again.';
+
     public function getAuthService()
     {
         if (! $this->authservice) {

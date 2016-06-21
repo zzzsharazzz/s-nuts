@@ -4,9 +4,11 @@ namespace Admin\Controller;
 
 use Admin\Controller\AdminBaseController;
 use Admin\Model\CategoryEntity;
+use Zend\Json\Json;
 use Zend\View\Model\ViewModel;
 use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\Iterator as paginatorIterator;
+use Zend\View\Model\JsonModel;
 
 class CategoryController extends AdminBaseController 
 {
@@ -49,29 +51,62 @@ class CategoryController extends AdminBaseController
 
 	public function saveAction()
 	{
-		if($this->request->isPost()) {
-			$postData = $this->request->getPost();
-			$catEntity = new CategoryEntity($postData);
-			if(!$catEntity) {
-				$this->flashMessenger()->addErrorMessage('Sorry, something went wrong, please try again.');
-				return $this->redirect()->toRoute('dashboard');
+		try {
+			if($this->request->isPost()) {
+				$postData = $this->request->getPost();
+				$catEntity = new CategoryEntity($postData);
+				if(!$catEntity->getCategoryName()) {
+					return new JsonModel([
+						'success' => false,
+						'message' => 'Please enter your category name!'
+					]);
+				}
+				$this->getCategoryMapper()->saveCategory($catEntity);
+				return new JsonModel([
+					'success' => true,
+					'message' => 'Save success!'
+				]);
 			}
-			$this->getCategoryMapper()->saveCategory($catEntity);
-			$this->flashMessenger()->addSuccessMessage('Save success!');
-			return $this->redirect()->toRoute('categories');
+		} catch (\Exception $ex) {
+			return new JsonModel([
+				'success' => false,
+				'message' => self::ERROR_MSG
+			]);
 		}
+		return new JsonModel([
+			'success' => false,
+			'message' => self::ERROR_MSG
+		]);
 	}
 	
 	public function deleteAction() 
 	{
-		$id = $this->params()->fromRoute('id');
-		$cat = $this->getCategoryMapper()->getCategoryById($id);
-		if (!$cat) {
-			$this->flashMessenger()->addWarningMessage('Category not found');
-			return $this->redirect()->toRoute('categories');
+		try {
+			$id = $this->params()->fromRoute('id');
+			$cat = $this->getCategoryMapper()->getCategoryById($id);
+			if (!$cat) {
+				return new JsonModel([
+					'success' => false,
+					'message' => 'Category not found!'
+				]);
+			}
+			$this->getCategoryMapper()->deleteCategory($id);
+			return new JsonModel([
+				'success' => true,
+				'message' => 'Delete success!'
+			]);
+		} catch (\Exception $ex) {
+			return new JsonModel([
+				'success' => false,
+				'message' => 'There are products in this category. Please delete them first.'
+			]);
 		}
-		$this->getCategoryMapper()->deleteCategory($id);
-		$this->flashMessenger()->addSuccessMessage('Delete success');
-		return $this->redirect()->toRoute('categories');
+	}
+
+	public function addAction()
+	{
+		$view = new ViewModel();
+		$view->setTerminal(true);
+		return $view;
 	}
 }
