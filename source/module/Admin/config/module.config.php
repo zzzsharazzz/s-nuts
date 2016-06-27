@@ -7,7 +7,8 @@ return array (
 				'invokables' => array (
 						'Admin\Controller\Index' => 'Admin\Controller\IndexController',
 						'Admin\Controller\Auth' => 'Admin\Controller\AuthController',
-						'Admin\Controller\Category' => 'Admin\Controller\CategoryController'
+						'Admin\Controller\Category' => 'Admin\Controller\CategoryController',
+						'Admin\Controller\Product' => 'Admin\Controller\ProductController'
 				) 
 		),
 		'router' => array (
@@ -55,7 +56,22 @@ return array (
 										) 
 								),
 								'may_terminate' => true 
-						) 
+						),
+						'products' => array (
+							'type' => 'segment',
+							'options' => array (
+								'route' => '/manager-product[/:action][/:id]',
+								'constraints' => array (
+									'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+									'id' => '[0-9]+'
+								),
+								'defaults' => array (
+									'controller' => 'Admin\Controller\Product',
+									'action' => 'index'
+								)
+							),
+							'may_terminate' => true
+						),
 				) 
 		),
 		'view_manager' => array (

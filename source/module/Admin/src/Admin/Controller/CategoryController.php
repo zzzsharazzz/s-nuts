@@ -40,9 +40,6 @@ class CategoryController extends AdminBaseController
 	{
 		$id = $this->params()->fromRoute('id') ? (int)$this->params()->fromRoute('id') : -1;
 		$cat = $this->getCategoryMapper()->getCategoryById($id);
-		if(!$cat) {
-			return 'Category not found!';
-		}
 		$view = new ViewModel();
 		$view->setTerminal(true);
 		$view->setVariable('cat', $cat);
@@ -56,27 +53,17 @@ class CategoryController extends AdminBaseController
 				$postData = $this->request->getPost();
 				$catEntity = new CategoryEntity($postData);
 				if(!$catEntity->getCategoryName()) {
-					return new JsonModel([
-						'success' => false,
-						'message' => 'Please enter your category name!'
-					]);
+					$this->flashMessenger()->addErrorMessage('Please enter your category name!');
+					return $this->redirect()->toRoute('categories');
 				}
 				$this->getCategoryMapper()->saveCategory($catEntity);
-				return new JsonModel([
-					'success' => true,
-					'message' => 'Save success!'
-				]);
+				$this->flashMessenger()->addSuccessMessage('Save success!');
+				return $this->redirect()->toRoute('categories');
 			}
 		} catch (\Exception $ex) {
-			return new JsonModel([
-				'success' => false,
-				'message' => self::ERROR_MSG
-			]);
+			$this->flashMessenger()->addErrorMessage(self::ERROR_MSG);
+			return $this->redirect()->toRoute('categories');
 		}
-		return new JsonModel([
-			'success' => false,
-			'message' => self::ERROR_MSG
-		]);
 	}
 	
 	public function deleteAction() 

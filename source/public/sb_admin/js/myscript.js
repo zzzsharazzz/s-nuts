@@ -4,39 +4,34 @@ $(function () {
         var href = $(this).val();
         var catName = $(this).closest('tr').find('td').eq(1).text();
         var selectBox =  $(this);
+        var myModal = $('#myModal');
         if(href != -1) {
             if(href.indexOf('delete') == -1) {
-                $.confirm({
-                    title: 'Edit <b>'+ catName +'</b>',
-                    content: function () {
-                        var self = this;
-                        return $.ajax({
-                            url: href,
-                            dataType: 'html',
-                            method: 'get'
-                        }).done(function (response) {
-                            self.setContent(response);
-                        }).fail(function(){
-                            self.setContent('Something went wrong.');
-                        });
-                    },
-                    confirm: function(){
-                        var formData = $('#saveCatForm').serialize();
-                        var url = $('#saveCatForm').attr('action');
-                        $.post(url, formData, function (result) {
-                            var msgContainer = generateMessage('warning', result.message);
-                            if(result.success) {
-                                msgContainer = generateMessage('success', result.message);
-                                $('.alert-area').html(msgContainer);
-                                reloadPage(3);
-                            } else {
-                                $('.alert-area').html(msgContainer);
+                // edit
+                $.ajax({
+                    url: href,
+                    dataType: 'html',
+                    method: 'get'
+                }).done(function (response) {
+                    if(response.trim() != '') {
+                        myModal.find('.modal-title').text('Edit category');
+                        myModal.find('.modal-body').html(response);
+                        myModal.modal('show');
+                        selectBox.prop('selectedIndex',0);
+                        $('#saveCatForm').validate({
+                            rules: {
+                                category_name: 'required'
+                            },
+                            messages: {
+                                category_name: 'Please enter your category name!'
+                            },
+                            submitHandler: function (form) {
+                               form.submit();
                             }
                         });
-                    },
-                    cancel: function(){
-                        selectBox.prop('selectedIndex',0);
                     }
+                }).fail(function(){
+                    alert('Sorry, something went wrong! Please try again.')
                 });
             } else {
                 $.confirm({
@@ -51,6 +46,7 @@ $(function () {
                                 reloadPage(3);
                             } else {
                                 $('.alert-area').html(msgContainer);
+                                selectBox.prop('selectedIndex',0);
                             }
                         });
                     },
@@ -79,7 +75,8 @@ $(function () {
                 });
             },
             confirm: function(){
-                var formData = $('#saveCatForm').serialize();
+                $('#saveCatForm').submit();
+                /*var formData = $('#saveCatForm').serialize();
                 var url = $('#saveCatForm').attr('action');
                 $.post(url, formData, function (result) {
                     var msgContainer = generateMessage('warning', result.message);
@@ -90,13 +87,26 @@ $(function () {
                     } else {
                         $('.alert-area').html(msgContainer);
                     }
-                });
+                });*/
             },
             cancel: function(){
 
             }
         });
-    })
+    });
+
+
+    $('#saveCatForm').validate({
+        rules: {
+            category_name: 'required'
+        },
+        messages: {
+            category_name: 'Please enter your category name'
+        },
+        submitHandler: function(form) {
+            alert(1);
+        }
+    });
 
 });
 
@@ -109,5 +119,5 @@ function generateMessage(className, message) {
 function reloadPage(time) {
     setTimeout(function () {
         location.reload();
-    }, time * 1000)
+    }, time * 1000);
 }

@@ -323,12 +323,31 @@
 	<script
 		src="<?php echo $this->basePath('sb_admin/js/jquery-confirm.min.js') ?>"></script>
 
+	<script
+		src="<?php echo $this->basePath('sb_admin/js/jquery-validate.js') ?>"></script>
 
 	<script
 		src="<?php echo $this->basePath('sb_admin/js/myscript.js') ?>"></script>
 
+	<!-- Trigger the modal with a button -->
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

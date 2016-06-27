@@ -7,7 +7,7 @@
  */
 
 define('ROOT', __DIR__ . '../');
-define('SITE_URL', 'http://snut.localhost/');
+define('SITE_URL', 'http://snuts.localhost/');
 define('IMAGES_URL', SITE_URL . 'images/');
 define('IMAGE_URL', SITE_URL . 'images/products/');
 define('IMAGE_DETAIL_URL', SITE_URL . 'images/product-details/');
