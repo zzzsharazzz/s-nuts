@@ -69,8 +69,15 @@ class CategoryController extends AdminBaseController
 	public function deleteAction() 
 	{
 		try {
-			$id = $this->params()->fromRoute('id');
+			$id = (int)$this->params()->fromRoute('id');
 			$cat = $this->getCategoryMapper()->getCategoryById($id);
+			$products = $this->getProductMapper()->fetchAll(['category_id' => $id]);
+			if($products->count() != 0) {
+				return new JsonModel([
+					'success' => false,
+					'message' => 'There are products in this category. Please delete them first!'
+				]);
+			}
 			if (!$cat) {
 				return new JsonModel([
 					'success' => false,

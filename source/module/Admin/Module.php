@@ -9,6 +9,7 @@
 
 namespace Admin;
 
+use Admin\Model\ProductMapper;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
@@ -74,6 +75,11 @@ class Module implements AutoloaderProviderInterface
 	                $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 	                $mapper = new CategoryMapper($dbAdapter);
 	                return $mapper;
+                },
+                'ProductMapper' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $mapper = new ProductMapper($dbAdapter);
+                    return $mapper;
                 }
             ),
         );

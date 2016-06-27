@@ -2,7 +2,7 @@
 $(function () {
     $('.category-action').change(function () {
         var href = $(this).val();
-        var catName = $(this).closest('tr').find('td').eq(1).text();
+        var catName = $(this).closest('tr').find('td').eq(0).text();
         var selectBox =  $(this);
         var myModal = $('#myModal');
         if(href != -1) {
@@ -43,7 +43,7 @@ $(function () {
                             if(result.success) {
                                 msgContainer = generateMessage('success', result.message);
                                 $('.alert-area').html(msgContainer);
-                                reloadPage(2);
+                                reloadPage(1.5);
                             } else {
                                 $('.alert-area').html(msgContainer);
                                 selectBox.prop('selectedIndex',0);

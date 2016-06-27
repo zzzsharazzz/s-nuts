@@ -28,7 +28,7 @@ class CategoryMapper
 	{
 		$select = $this->sql->select();
 		
-		$statement = $this->sql->prepareStatementForSqlObject($select);
+		$statement = $this->sql->prepareStatementForSqlObject($select->order(['category_id' => 'desc']));
 		$results = $statement->execute();
 	
 		$entityPrototype = new CategoryEntity();

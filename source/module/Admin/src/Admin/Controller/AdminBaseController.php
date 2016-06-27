@@ -21,6 +21,7 @@ class AdminBaseController extends  AbstractActionController
     protected $storage;
     
     protected $categoryMapper;
+    protected $productMapper;
 
     const ERROR_MSG = 'Sorry, something went wrong! Please try again.';
 
@@ -61,5 +62,14 @@ class AdminBaseController extends  AbstractActionController
     		$this->categoryMapper = $sm->get('CategoryMapper');
     	}
     	return $this->categoryMapper;
+    }
+
+    public function getProductMapper()
+    {
+        if(!$this->productMapper) {
+            $sm = $this->getServiceLocator();
+            $this->productMapper = $sm->get('ProductMapper');
+        }
+        return $this->productMapper;
     }
 }

@@ -49,11 +49,11 @@
 									aria-describedby="dataTables-example_info" style="width: 100%;">
 									<thead>
 										<tr role="row">
-											<th class="sorting_asc" tabindex="0"
+											<!--<th class="sorting_asc" tabindex="0"
 												aria-controls="dataTables-example" rowspan="1" colspan="1"
 												aria-sort="ascending"
 												aria-label="Rendering engine: activate to sort column descending"
-												style="width: 174px;">ID</th>
+												style="width: 174px;">ID</th>-->
 											<th class="sorting" tabindex="0"
 												aria-controls="dataTables-example" rowspan="1" colspan="1"
 												aria-label="Browser: activate to sort column ascending"
@@ -68,7 +68,7 @@
 										<?php $count = 1 ?>
 										<?php foreach ($categories as $cat) : ?>
 										<tr class="gradeA <?php echo $count % 2 != 0 ? 'odd' : 'even' ?>" role="row">
-											<td class="sorting_1"><?php echo $cat->getCategoryId() ?></td>
+											<!--<td class="sorting_1"><?php /*echo $cat->getCategoryId() */?></td>-->
 											<td><?php echo $cat->getCategoryName() ?></td>
 											<td>
 												<select class="form-control category-action">
