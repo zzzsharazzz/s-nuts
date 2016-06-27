@@ -43,7 +43,7 @@ $(function () {
                             if(result.success) {
                                 msgContainer = generateMessage('success', result.message);
                                 $('.alert-area').html(msgContainer);
-                                reloadPage(3);
+                                reloadPage(2);
                             } else {
                                 $('.alert-area').html(msgContainer);
                                 selectBox.prop('selectedIndex',0);
@@ -60,54 +60,30 @@ $(function () {
 
     $('.add-category').click(function (e) {
         e.preventDefault();
-        $.confirm({
-            title: 'Enter category name',
-            content: function () {
-                var self = this;
-                return $.ajax({
-                    url: '/manager-category/add',
-                    dataType: 'html',
-                    method: 'get'
-                }).done(function (response) {
-                    self.setContent(response);
-                }).fail(function(){
-                    self.setContent('Something went wrong.');
-                });
-            },
-            confirm: function(){
-                $('#saveCatForm').submit();
-                /*var formData = $('#saveCatForm').serialize();
-                var url = $('#saveCatForm').attr('action');
-                $.post(url, formData, function (result) {
-                    var msgContainer = generateMessage('warning', result.message);
-                    if(result.success) {
-                        msgContainer = generateMessage('success', result.message);
-                        $('.alert-area').html(msgContainer);
-                        reloadPage(3);
-                    } else {
-                        $('.alert-area').html(msgContainer);
-                    }
-                });*/
-            },
-            cancel: function(){
-
-            }
+        $.ajax({
+            url: '/manager-category/add',
+            dataType: 'html',
+            method: 'get'
+        }).done(function (response) {
+            var myModal = $('#myModal');
+            myModal.find('.modal-title').text('Add new category');
+            myModal.find('.modal-body').html(response);
+            myModal.modal('show');
+            $('#saveCatForm').validate({
+                rules: {
+                    category_name: 'required'
+                },
+                messages: {
+                    category_name: 'Please enter your category name!'
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+        }).fail(function(){
+            alert('Sorry, something went wrong! Please try again.')
         });
     });
-
-
-    $('#saveCatForm').validate({
-        rules: {
-            category_name: 'required'
-        },
-        messages: {
-            category_name: 'Please enter your category name'
-        },
-        submitHandler: function(form) {
-            alert(1);
-        }
-    });
-
 });
 
 function generateMessage(className, message) {
