@@ -19,7 +19,7 @@ class CategoryController extends AdminBaseController
 	{
 		$categories = $this->getCategoryMapper ()->fetchAll ();
 		
-		if(!$categories) {
+		if($categories->count() === 0) {
 			return $this->redirect()->toRoute('dashboard');
 		}
 		

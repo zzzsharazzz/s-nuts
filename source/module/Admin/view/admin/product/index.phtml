@@ -49,15 +49,26 @@
                                        aria-describedby="dataTables-example_info" style="width: 100%;">
                                     <thead>
                                     <tr role="row">
-                                        <th class="sorting_asc" tabindex="0"
-                                            aria-controls="dataTables-example" rowspan="1" colspan="1"
-                                            aria-sort="ascending"
-                                            aria-label="Rendering engine: activate to sort column descending"
-                                            style="width: 174px;">ID</th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="dataTables-example" rowspan="1" colspan="1"
                                             aria-label="Browser: activate to sort column ascending"
                                             style="width: 211px;">Name</th>
+                                        <!--<th class="sorting" tabindex="0"
+                                            aria-controls="dataTables-example" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending"
+                                            style="width: 211px;">SKU</th>-->
+                                        <th class="sorting" tabindex="0"
+                                            aria-controls="dataTables-example" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending"
+                                            style="width: 211px;">Price</th>
+                                        <th class="sorting" tabindex="0"
+                                            aria-controls="dataTables-example" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending"
+                                            style="width: 211px;">Category</th>
+                                        <th class="sorting" tabindex="0"
+                                            aria-controls="dataTables-example" rowspan="1" colspan="1"
+                                            aria-label="Browser: activate to sort column ascending"
+                                            style="width: 211px;">Type</th>
                                         <th class="sorting" tabindex="0"
                                             aria-controls="dataTables-example" rowspan="1" colspan="1"
                                             aria-label="Platform(s): activate to sort column ascending"
@@ -65,7 +76,37 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
+                                    <?php foreach ($this->products as $product) : ?>
+                                        <tr>
+                                            <td><?php echo $product->getProductName() ?></td>
+                                            <!--<td></td>-->
+                                            <td><?php echo $product->getProductPrice() ?></td>
+                                            <td><?php echo $this->categoryMapper->getCategoryById($product->getCategoryId())->getCategoryName(); ?></td>
+                                            <td>
+                                                <?php
+                                                if($product->getIsNew() == 1) {
+                                                    echo 'New';
+                                                } elseif($product->getIsSale() == 1) {
+                                                    echo 'Sale';
+                                                } elseif($product->getIsFeatured() == 1) {
+                                                    echo 'Featured';
+                                                } elseif($product->getIsRecommended() == 1) {
+                                                    echo 'Recommended';
+                                                } else {
+                                                    echo 'Normal';
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <select class="form-control category-action">
+                                                    <option value="-1">-----</option>
+                                                    <option value="<?php echo $this->url('products', ['action' => 'edit', 'id' => $product->getProductId()]) ?>">Edit</option>
+                                                    <option value="<?php echo $this->url('products', ['action' => 'delete', 'id' => $product->getProductId()]) ?>">Delete</option>
+                                                    <option value="<?php echo $this->url('products', ['action' => 'detail', 'id' => $product->getProductId()]) ?>">View Detail</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -76,7 +117,23 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-
+                                    <?php
+                                    // add at the end of the file after the table
+                                    echo $this->paginationControl(
+                                    // the paginator object
+                                        $this->products,
+                                        // the scrolling style
+                                        'sliding',
+                                        // the partial to use to render the control
+                                        'admin/paginator',
+                                        // the route to link to when a user clicks a control link
+                                        array(
+                                            'route' => 'products',
+                                            'name' => 'haha',
+                                            'type' => '1'
+                                        )
+                                    );
+                                    ?>
                                 </div>
                             </div>
                         </div>

@@ -68,7 +68,7 @@ return array (
 								'defaults' => array (
 									'controller' => 'Admin\Controller\Product',
 									'action' => 'index'
-								)
+								),
 							),
 							'may_terminate' => true
 						),
@@ -81,5 +81,9 @@ return array (
 				'strategies' => array(
 					'ViewJsonStrategy',
 				),
+				'template_map' => array(
+					'admin/sidebar' => __DIR__ . '/../view/partials/sidebar.phtml',
+					'admin/paginator' => __DIR__ . '/../view/partials/paginator.phtml',
+				)
 		) 
 );

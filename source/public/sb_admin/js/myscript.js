@@ -84,6 +84,10 @@ $(function () {
             alert('Sorry, something went wrong! Please try again.')
         });
     });
+
+    // products
+    
+
 });
 
 function generateMessage(className, message) {

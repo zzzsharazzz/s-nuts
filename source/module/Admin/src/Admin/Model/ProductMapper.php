@@ -21,11 +21,14 @@ class ProductMapper
         $this->sql->setTable($this->tableName);
     }
 
-    public function fetchAll($conditions = null)
+    public function fetchAll($conditions = null, $like = null)
     {
         $select = $this->sql->select();
         if($conditions) {
             $select->where($conditions);
+        }
+        if($like) {
+            $select->where($like);
         }
         $statement = $this->sql->prepareStatementForSqlObject($select->order(['product_id' => 'desc']));
         $results = $statement->execute();
