@@ -64,7 +64,7 @@ class AuthController extends AdminBaseController
                 foreach($result->getMessages() as $message)
                 {
                     //save message temporary into flashmessenger
-                    $this->flashmessenger()->addMessage($message);
+                    //$this->flashmessenger()->addMessage($message);
                 }
 
                 if ($result->isValid()) {

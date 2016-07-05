@@ -7,6 +7,7 @@
  */
 namespace Admin\Controller;
 
+use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\Iterator as paginatorIterator;
@@ -56,10 +57,77 @@ class ProductController extends AdminBaseController
         $paginator->setItemCountPerPage(self::ITEM_PER_PAGE);
         return new ViewModel ( [
             'products'       => $paginator,
-            'categoryMapper' => $categoryMapper,
-            'name'           => isset($name) ? $name : '',
-            'id'             => isset($id) ? $id : '',
-            'type'           => isset($type) ? $type : ''
+            'categoryMapper' => $categoryMapper
         ] );
     }
+
+    public function deleteAction()
+    {
+        try {
+            if($this->request->isPost()) {
+                $id = $this->params()->fromRoute('id') ? (int)$this->params()->fromRoute('id') : null;
+                if($id) {
+                    $this->getConnection()->beginTransaction();
+                    // delete images in db
+                    if($this->getImageMapper()->deleteImageByProductId($id)) {
+                        $product = $this->getProductMapper()->getProductById($id);
+                        // delete product
+                        if($this->getProductMapper()->deleteProductById($id)) {
+                            // delete image in product folder
+                            $imageRoot = realpath(ROOT) . '/public/images/products/' . $product->getCategoryId() . '/' . $product->getProductId();
+                            foreach (glob($imageRoot . '*.jpg') as $img) {
+                                @unlink($img);
+                            }
+                            $this->getConnection()->commit();
+                            return new JsonModel([
+                                'success' => true,
+                                'message' => 'Delete success!'
+                            ]);
+                        } else {
+                            $this->getConnection()->rollback();
+                            return new JsonModel([
+                                'success' => false,
+                                'message' => 'Can not delete product in db!'
+                            ]);
+                        }
+                    } else {
+                        $this->getConnection()->rollback();
+                        return new JsonModel([
+                            'success' => false,
+                            'message' => 'Can not delete image in db!'
+                        ]);
+                    }
+                } else {
+                    return new JsonModel([
+                        'success' => false,
+                        'message' => 'Id must is a number!'
+                    ]);
+                }
+            } else {
+                return $this->notFoundAction();
+            }
+        } catch (\Exception $ex) {
+            $this->getConnection()->rollback();
+            return new JsonModel([
+                'success' => false,
+                'message' => $ex->getMessage()
+            ]);
+        }
+    }
+
+    public function detailAction()
+    {
+        try {
+            $id = $this->params()->fromRoute('id') ? (int)$this->params()->fromRoute('id') : null;
+            if(!$id) {
+                $this->flashMessenger()->addErrorMessage(self::ERROR_MSG);
+                return $this->redirect()->toRoute('manager-product');
+            }
+            return new ViewModel();
+        } catch (\Exception $ex) {
+            $this->flashMessenger()->addErrorMessage(self::ERROR_MSG);
+            return $this->redirect()->toRoute('manager-product');
+        }
+    }
+
 }

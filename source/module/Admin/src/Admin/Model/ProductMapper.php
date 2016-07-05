@@ -55,4 +55,13 @@ class ProductMapper
         return $product;
     }
 
+    public function deleteProductById($id)
+    {
+        $delete = $this->sql->delete()->where([
+            'product_id' => $id
+        ]);
+        $statement = $this->sql->prepareStatementForSqlObject($delete);
+        return $statement->execute();
+    }
+
 }

@@ -22,6 +22,8 @@ class AdminBaseController extends  AbstractActionController
     
     protected $categoryMapper;
     protected $productMapper;
+    protected $connection;
+    protected $imageMapper;
 
     const ERROR_MSG = 'Sorry, something went wrong! Please try again.';
 
@@ -71,5 +73,23 @@ class AdminBaseController extends  AbstractActionController
             $this->productMapper = $sm->get('ProductMapper');
         }
         return $this->productMapper;
+    }
+
+    public function getImageMapper()
+    {
+        if(!$this->imageMapper) {
+            $sm = $this->getServiceLocator();
+            $this->imageMapper = $sm->get('ImageMapper');
+        }
+        return $this->imageMapper;
+    }
+
+    public function getConnection()
+    {
+        if(!$this->connection) {
+            $sm = $this->getServiceLocator();
+            $this->connection = $sm->get('Zend\Db\Adapter\Adapter')->getDriver()->getConnection();
+        }
+        return $this->connection;
     }
 }

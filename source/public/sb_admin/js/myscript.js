@@ -86,7 +86,30 @@ $(function () {
     });
 
     // products
-    
+    $('a.product-delete').click(function (e) {
+        e.preventDefault();
+        var productName = $(this).closest('tr').find('td:first').text();
+        var href = $(this).attr('href');
+        $.confirm({
+            title: 'Confirm!',
+            content: 'Are you sure to delete <b>' + productName + '</b>!',
+            confirm: function(){
+               $.post(href, function (result) {
+                   var msgContainer = generateMessage('warning', result.message);
+                   if(result.success) {
+                       msgContainer = generateMessage('success', result.message);
+                       $('.alert-area').html(msgContainer);
+                       reloadPage(1.5);
+                   } else {
+                       $('.alert-area').html(msgContainer);
+                   }
+               });
+            },
+            cancel: function(){
+
+            }
+        });
+    })
 
 });
 

@@ -6,9 +6,6 @@ if(isset($this->id)) {
 if(isset($this->action)) {
     $params['action'] = $this->action;
 }
-if(isset($this->name)) {
-    $query['name'] = $this->name;
-}
 
 ?>
 <?php if ($this->pageCount): ?>
@@ -49,9 +46,7 @@ if(isset($this->name)) {
             <?php foreach ($this->pagesInRange as $page): ?>
                 <?php if ($page != $this->current): ?>
                     <li>
-                        <a href="<?php echo $this->url($this->route, $params, [
-                            'query' => array_merge(['page' => $page], $query )
-                        ]);?>">
+                        <a href="<?php echo $this->url($this->route, $params);?>?page=<?php echo $page ?>">
                             <?php echo $page; ?>
                         </a>
                     </li>

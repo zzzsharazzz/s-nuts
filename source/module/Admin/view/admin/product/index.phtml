@@ -18,7 +18,7 @@
                          class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                         <div class="row">
                             <div class="col-md-12 alert-area">
-
+                                <?php echo $this->partial('layout/messages') ?>
                             </div>
                         </div>
                         <div class="row">
@@ -98,12 +98,15 @@
                                                 ?>
                                             </td>
                                             <td>
-                                                <select class="form-control category-action">
-                                                    <option value="-1">-----</option>
-                                                    <option value="<?php echo $this->url('products', ['action' => 'edit', 'id' => $product->getProductId()]) ?>">Edit</option>
-                                                    <option value="<?php echo $this->url('products', ['action' => 'delete', 'id' => $product->getProductId()]) ?>">Delete</option>
-                                                    <option value="<?php echo $this->url('products', ['action' => 'detail', 'id' => $product->getProductId()]) ?>">View Detail</option>
-                                                </select>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Action
+                                                        <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="<?php echo $this->url('products', ['action' => 'edit', 'id' => $product->getProductId()]) ?>">Edit</a></li>
+                                                        <li><a class="product-delete" href="<?php echo $this->url('products', ['action' => 'delete', 'id' => $product->getProductId()]) ?>">Delete</a></li>
+                                                        <li><a href="<?php echo $this->url('products', ['action' => 'detail', 'id' => $product->getProductId()]) ?>">View Detail</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
@@ -128,9 +131,7 @@
                                         'admin/paginator',
                                         // the route to link to when a user clicks a control link
                                         array(
-                                            'route' => 'products',
-                                            'name' => 'haha',
-                                            'type' => '1'
+                                            'route' => 'products'
                                         )
                                     );
                                     ?>

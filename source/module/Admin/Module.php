@@ -9,6 +9,7 @@
 
 namespace Admin;
 
+use Admin\Model\ImageMapper;
 use Admin\Model\ProductMapper;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
@@ -80,7 +81,13 @@ class Module implements AutoloaderProviderInterface
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $mapper = new ProductMapper($dbAdapter);
                     return $mapper;
+                },
+                'ImageMapper' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $mapper = new ImageMapper($dbAdapter);
+                    return $mapper;
                 }
+
             ),
         );
     }
