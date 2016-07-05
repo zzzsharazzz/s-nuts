@@ -74,7 +74,7 @@ $(function () {
                     category_name: 'required'
                 },
                 messages: {
-                    category_name: 'Please enter your category name!'
+                    category_name: 'Category name is required!'
                 },
                 submitHandler: function (form) {
                     form.submit();
@@ -108,6 +108,43 @@ $(function () {
             cancel: function(){
 
             }
+        });
+    });
+
+    $('a.add-product').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/manager-product/add',
+            dataType: 'html',
+            method: 'get'
+        }).done(function (response) {
+            var myModal = $('#myModal');
+            myModal.find('.modal-title').text('Add new product');
+            myModal.find('.modal-body').html(response);
+            myModal.modal('show');
+            $('#saveProductForm').validate({
+                rules: {
+                    product_name: 'required',
+                    product_sku: 'required',
+                    product_price: {
+                        required: true,
+                        number: true
+                    }
+                },
+                messages: {
+                    product_name: 'Product name is required!',
+                    product_sku: 'Product sku is required!',
+                    product_price: {
+                        required: 'Product price is required!',
+                        number: 'Price must is an number!'
+                    }
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+        }).fail(function(){
+            alert('Sorry, something went wrong! Please try again.')
         });
     })
 

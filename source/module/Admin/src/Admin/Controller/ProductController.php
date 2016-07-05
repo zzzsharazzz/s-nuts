@@ -130,4 +130,13 @@ class ProductController extends AdminBaseController
         }
     }
 
+    public function addAction()
+    {
+        $view = new ViewModel();
+        $view->setTerminal(true);
+        $categories = $this->getCategoryMapper ()->fetchAll ();
+        $view->setVariable('categories', $categories);
+        return $view;
+    }
+
 }
