@@ -9,6 +9,7 @@ use Zend\Db\Sql\Select;
 use Zend\Db\ResultSet\HydratingResultSet;
 
 use Admin\Model\CategoryEntity;
+use Admin\Model\ImageEntity;
  
 
 class ImageMapper
@@ -65,5 +66,21 @@ class ImageMapper
 		$statement = $this->sql->prepareStatementForSqlObject($delete);
 		return $statement->execute();
 	}
+
+	public function getImageByProductId($productId)
+    {
+        $select = $this->sql->select();
+        $select->where([
+        	'product_id' => $productId
+    	]);
+        $statement = $this->sql->prepareStatementForSqlObject($select);
+        $results = $statement->execute();
+        $entityPrototype = new ImageEntity();
+        $hydrator = new ClassMethods();
+        $resultset = new HydratingResultSet($hydrator, $entityPrototype);
+        $resultset->initialize($results);
+        $resultset->buffer();
+        return $resultset;
+    }
 	
 }

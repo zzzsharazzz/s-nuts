@@ -1,3 +1,4 @@
+
 <form id="saveProductForm" method="post" action="<?php echo $this->url('products', ['action' => 'save']) ?>">
     <div class="col-md-12">
         <div class="form-group">
@@ -29,6 +30,10 @@
         </div>
         <div class="checkbox">
             <label><input type="checkbox" value="1">In Stock</label>
+        </div>
+        <div class="form-group">
+           <label class="control-label">Select File</label>
+            <input id="input-1" type="file" class="file">
         </div>
         <div class="form-group pull-right">
             <button type="submit" class="btn btn-success">Save</button>

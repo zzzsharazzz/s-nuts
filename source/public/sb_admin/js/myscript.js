@@ -146,7 +146,14 @@ $(function () {
         }).fail(function(){
             alert('Sorry, something went wrong! Please try again.')
         });
-    })
+    });
+
+    // initialize with defaults
+    $("#input-1").fileinput();
+
+    // with plugin options
+    $("#input-1").fileinput({'showUpload':false, 'previewFileType':'any'});
+
 
 });
 
@@ -161,3 +168,5 @@ function reloadPage(time) {
         location.reload();
     }, time * 1000);
 }
+
+

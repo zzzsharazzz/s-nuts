@@ -27,34 +27,63 @@
                                     <table class="table">
                                         <tr>
                                             <td><b>Name:</b></td>
-                                            <td></td>
+                                            <td><?php echo $product->getProductName() ?></td>
                                         </tr>
                                         <tr>
                                             <td><b>SKU:</b></td>
-                                            <td></td>
+                                            <td><?php echo $product->getProductSku() ?></td>
                                         </tr>
                                         <tr>
                                             <td><b>Price:</b></td>
-                                            <td></td>
+                                            <td><?php echo $product->getProductPrice() ?></td>
                                         </tr>
                                         <tr>
                                             <td><b>Description:</b></td>
-                                            <td></td>
+                                            <td><?php echo $product->getProductDesc() ?></td>
                                         </tr>
                                         <tr>
                                             <td><b>Category:</b></td>
-                                            <td></td>
+                                            <td>
+                                                <?php
+                                                   echo $categoryMapper->getCategoryById($product->getCategoryId())->getCategoryName();  
+                                                ?>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td><b>Type:</b></td>
-                                            <td></td>
+                                            <td>
+                                                <?php 
+                                                    if($product->getIsNew() == 1) {
+                                                        echo 'New';
+                                                    } elseif($product->getIsSale() == 1) {
+                                                        echo 'Sale';
+                                                    } elseif($product->getIsRecommended() == 1) {
+                                                        echo 'Recommended';
+                                                    } else {
+                                                        echo 'Featured';
+                                                    }
+                                                ?>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td><b>In stock:</b></td>
-                                            <td></td>
+                                            <td><?php echo $product->getIsStock() == 1 ? 'Yes' : 'No' ?></td>
                                         </tr>
                                     </table>
                                 </div>
+                            </div>
+                        </div>
+                        <h3>Images</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php foreach($images as $image) : ?>
+                                <div class="col-md-4">
+                                <?php 
+                                    $imgUrl = IMAGE_URL . $product->getCategoryId() . '/' . $image->getImageName();
+                                ?>
+                                <img class="img-responsive" src="<?php echo $imgUrl ?>" />
+                                </div>
+                                <?php endforeach ?>
                             </div>
                         </div>
                     </div>

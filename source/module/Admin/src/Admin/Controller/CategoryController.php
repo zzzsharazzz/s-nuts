@@ -92,7 +92,7 @@ class CategoryController extends AdminBaseController
 		} catch (\Exception $ex) {
 			return new JsonModel([
 				'success' => false,
-				'message' => 'There are products in this category. Please delete them first.'
+				'message' => self::ERROR_MSG
 			]);
 		}
 	}

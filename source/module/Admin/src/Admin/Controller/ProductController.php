@@ -123,7 +123,17 @@ class ProductController extends AdminBaseController
                 $this->flashMessenger()->addErrorMessage(self::ERROR_MSG);
                 return $this->redirect()->toRoute('manager-product');
             }
-            return new ViewModel();
+            $product = $this->getProductMapper()->getProductById($id);
+            if(!$product) {
+                 $this->flashMessenger()->addErrorMessage('Product not found');
+                return $this->redirect()->toRoute('manager-product');
+            }
+            $images = $this->getImageMapper()->getImageByProductId($product->getProductId());
+            return new ViewModel([
+                'product' => $product,
+                'categoryMapper' => $this->getCategoryMapper(),
+                'images' => $images
+            ]);
         } catch (\Exception $ex) {
             $this->flashMessenger()->addErrorMessage(self::ERROR_MSG);
             return $this->redirect()->toRoute('manager-product');
