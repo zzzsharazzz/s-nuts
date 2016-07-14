@@ -149,4 +149,21 @@ class ProductController extends AdminBaseController
         return $view;
     }
 
+    public function saveAction()
+    {
+        try {
+            if($this->request->isPost()) {
+                $postData = $this->request->getPost()->toArray();
+                $files = $this->request->getFiles()->toArray();
+                var_dump($postData);
+                var_dump($files);
+                var_dump($_FILES);
+            } else {
+
+            }
+        } catch (\Exception $ex) {
+
+        }
+    }
+
 }

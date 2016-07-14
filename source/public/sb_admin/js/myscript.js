@@ -1,5 +1,6 @@
 
 $(function () {
+
     $('.category-action').change(function () {
         var href = $(this).val();
         var catName = $(this).closest('tr').find('td').eq(0).text();
@@ -122,6 +123,10 @@ $(function () {
             myModal.find('.modal-title').text('Add new product');
             myModal.find('.modal-body').html(response);
             myModal.modal('show');
+            // initialize with defaults
+            $(document).find(".fileinput").fileinput({
+                'showUpload': false
+            });
             $('#saveProductForm').validate({
                 rules: {
                     product_name: 'required',
@@ -147,13 +152,6 @@ $(function () {
             alert('Sorry, something went wrong! Please try again.')
         });
     });
-
-    // initialize with defaults
-    $("#input-1").fileinput();
-
-    // with plugin options
-    $("#input-1").fileinput({'showUpload':false, 'previewFileType':'any'});
-
 
 });
 
