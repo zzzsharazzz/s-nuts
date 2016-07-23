@@ -4,7 +4,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2016 at 01:22 PM
+-- Generation Time: Jul 23, 2016 at 03:58 AM
 -- Server version: 10.0.20-MariaDB
 -- PHP Version: 5.2.17
 
@@ -24,14 +24,36 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin_users`
+--
+
+CREATE TABLE IF NOT EXISTS `admin_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `role` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `admin_users`
+--
+
+INSERT INTO `admin_users` (`id`, `email`, `password`, `role`) VALUES
+(1, 'admin@email.com', 'e10adc3949ba59abbe56e057f20f883e', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `categories`
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `category_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(50) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `categories`
@@ -83,6 +105,31 @@ INSERT INTO `images` (`image_id`, `image_name`, `product_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `news`
+--
+
+CREATE TABLE IF NOT EXISTS `news` (
+  `news_id` int(11) NOT NULL AUTO_INCREMENT,
+  `news_content` text COLLATE utf8_unicode_ci NOT NULL,
+  `news_image` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `created_date` datetime DEFAULT '0000-00-00 00:00:00',
+  `news_title` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `news_short_content` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`news_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`news_id`, `news_content`, `news_image`, `created_date`, `news_title`, `news_short_content`) VALUES
+(1, 'Nuts and Heart Health : A Summary Of The Evidence\n                            This report is a summary of the latest evidence on nuts and the important role they play in cardiovascular\n                            HEALTH. It incorporates a summary of a new systematic literature review of just over 100 studies conducted\n                            by academics from Landmark Nutrition and the University of Wollongong’s Smart Food Centre, the findings support\n                            a general level health claim that daily nut consumption, as part of a healthy, varied diet, contributes to HEART HEALTH.', 'banner1.jpg', '2016-06-14 21:25:20', 'Nuts and Heart Health : A Summary Of The Evidence', 'Nuts and Heart Health : A Summary Of The Evidence'),
+(2, 'The Nut Report: The Big Fat Myth\n                            Nuts and The Big Fat Myth considers evidence spanning the last 24 years on nuts and their impact on weight –\n                            including weight management in diets designed to achieve other outcomes, such as lowering cholesterol or\n                            stabilising blood glucose.', 'banner2.jpg', '2016-06-14 21:30:20', 'The Nut Report: The Big Fat Myth', 'The Nut Report: The Big Fat Myth'),
+(3, 'PREDIMED: A five year Mediterranean and mixed nuts diet study from Spain – summary of the published literature (Updated July 2015)\n                            This long term study of 7500 people in 16 centres in Spain found eating a Mediterranean diet with a 30g handful of nuts a day\n                            improves Heart Disease, Metabolic Syndrome, Diabetes, Weight and Brain function. To date these PREDIMED study groups have\n                            published some 155 journal papers in peer reviewed journals and we have summarised those related to nut consumption here.', 'banner3.jpg', '2016-06-14 21:35:20', 'PREDIMED: A five year Mediterranean and mixed nuts diet study from Spain – summary of the published literature (Updated July 2015)', 'PREDIMED: A five year Mediterranean and mixed nuts diet study from Spain – summary of the published literature (Updated July 2015)');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -101,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `is_stock` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`product_id`),
   UNIQUE KEY `ProductSKU_UNIQUE` (`product_sku`),
-  KEY `fk_product_category_idx` (`category_id`)
+  KEY `fk_p_c_idx` (`category_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
 
 --
